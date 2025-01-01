@@ -11,8 +11,11 @@ module.exports = {
         'ku-green': '#21BA45',
       },
       fontFamily: {
-        'noto-sans': ['Noto Sans KR', 'sans-serif'],
-      },
+        'ibm': ['"IBM Plex Sans KR"', 'sans-serif'],
+        'jua': ['Jua', 'sans-serif'],
+        'noto': ['"Noto Sans KR"', 'sans-serif'],
+        'poor': ['"Poor Story"', 'sans-serif'],
+      }
     },
   },
   plugins: [],

@@ -22,17 +22,21 @@ const Login = () => {
     console.log('Login attempt with:', formData);
   };
 
-  return (
+return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {/* 왼쪽: 환영 메시지와 로고 */}
+        {/* 로고 섹션 추가 */}
+        <div className={styles.logoSection}>
+          <div className={styles.logo}>
+            <span>KU-it-so</span>
+          </div>
+        </div>
+
+        {/* 왼쪽: 환영 메시지 */}
         <div className={styles.leftSection}>
           <div className={styles.welcomeText}>
             <p>KU-it-so에 오신 것을</p>
             <p>환영합니다</p>
-          </div>
-          <div className={styles.logo}>
-            <span>KU-it-so</span>
           </div>
         </div>
 
@@ -58,7 +62,6 @@ const Login = () => {
             </Button>
           </form>
 
-          {/* 하단 링크들 */}
           <div className={styles.links}>
             <button type="button">회원가입</button>
           </div>

@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: linear-gradient(180deg, #036b3f 0%, #b8d829 100%);
+  background: linear-gradient(135deg, #036b3f 0%, #21ba45 100%);
 }
 
 .content {
@@ -13,9 +13,22 @@
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   margin-bottom: 70px;
+  position: relative;
+}
+
+.logoSection {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
 
 .leftSection {
@@ -25,26 +38,55 @@
 
 .welcomeText {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   text-align: start;
-}
-
-.logo {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  font-size: 3.75rem;
-  font-weight: bold;
+  letter-spacing: -0.02em;
 }
 
 .formSection {
   width: 100%;
   max-width: 28rem;
+  margin-top: 4rem;
 }
 
 .formInputs {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.formInputs input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.formInputs input:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.formInputs input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.formInputs button {
+  width: 100%;
+  background-color: #025132;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  color: white;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.formInputs button:hover {
+  background-color: #013e27;
 }
 
 .links {
@@ -62,15 +104,36 @@
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.links button:hover {
+  opacity: 1;
 }
 
 @media (min-width: 768px) {
   .content {
     flex-direction: row;
     margin-bottom: 0;
+    padding-top: 100px;
+  }
+
+  .logoSection {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .leftSection {
     text-align: left;
+    margin-right: 4rem;
+  }
+
+  .formSection {
+    margin-left: 2rem;
   }
 }
