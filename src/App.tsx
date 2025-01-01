@@ -1,11 +1,8 @@
 import React from 'react';
+import Login from './pages/onboarding/Login.tsx';
 
 const App = () => {
-  return (
-    <div className="App">
-      <h1>KU-it-so</h1>
-    </div>
-  );
+  return <Login />;
 };
 
 export default App;
