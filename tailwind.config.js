@@ -4,7 +4,16 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'ku-dark-green': '#036B3F',
+        'ku-light-green': '#B8D829',
+        'ku-green': '#21BA45',
+      },
+      fontFamily: {
+        'noto-sans': ['Noto Sans KR', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
