@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Login.module.css';
 import Input from '../../components/common/Input/Input.tsx';
 import Button from '../../components/common/Button/Button.tsx';
@@ -8,6 +8,27 @@ const Login = () => {
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    const starryBg = document.createElement('div');
+    starryBg.className = styles['starry-bg'];
+    
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = styles.star;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      starryBg.appendChild(star);
+    }
+
+    const container = document.querySelector(`.${styles.container}`);
+    container?.appendChild(starryBg);
+
+    return () => {
+      starryBg.remove();
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,31 +43,24 @@ const Login = () => {
     console.log('Login attempt with:', formData);
   };
 
-return (
+  return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {/* 로고 섹션 추가 */}
         <div className={styles.logoSection}>
           <div className={styles.logo}>
             <span>KU-it-so</span>
           </div>
-        </div>
-
-        {/* 왼쪽: 환영 메시지 */}
-        <div className={styles.leftSection}>
-          <div className={styles.welcomeText}>
-            <p>KU-it-so에 오신 것을</p>
-            <p>환영합니다</p>
+          <div className={styles.logoDescription}>
+           안전한 건국대학교 캠퍼스 중고거래의 시작
           </div>
         </div>
 
-        {/* 오른쪽: 로그인 폼 */}
         <div className={styles.formSection}>
           <form onSubmit={handleSubmit} className={styles.formInputs}>
             <Input
               type="text"
               name="email"
-              placeholder="이메일 혹은 아이디 입력"
+              placeholder="건국대학교 이메일 입력"
               value={formData.email}
               onChange={handleChange}
             />
@@ -64,6 +78,9 @@ return (
 
           <div className={styles.links}>
             <button type="button">회원가입</button>
+            <div className={styles.signupDescription}>
+                건국대학교 학생만 가입 가능합니다
+            </div>
           </div>
         </div>
       </div>
