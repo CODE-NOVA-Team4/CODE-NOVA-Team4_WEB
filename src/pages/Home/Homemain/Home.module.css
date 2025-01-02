@@ -1,0 +1,181 @@
+/* Search.module.css */
+
+/* 전체 Search 컨테이너 */
+.search {
+    @apply flex items-center justify-center w-full p-4; /* 가운데 정렬 */
+    padding-top: calc(50px); 
+
+}
+  
+  /* 검색 박스 */
+  .searchbox {
+    @apply flex items-center bg-gray-200 rounded-full transition-all;
+    width: 100%; /* 기본 너비 */
+    max-width: 70%; /* 전체 창의 90%로 제한 */
+    padding: 0.5rem 1rem;
+  }
+  
+  
+  /* 작은 화면에서는 너비 줄이기 */
+
+  
+  /* 원형 아이콘 */
+  .circle {
+    @apply w-6 h-6 bg-white rounded-full flex items-center justify-center;
+    margin-right: 0.75rem;
+  }
+  
+  /* 입력창 스타일 */
+  .searchcontent {
+    @apply flex-grow bg-transparent text-sm text-gray-700 focus:outline-none;
+  }
+  
+  /* 화살표 벡터 */
+  .searchvector {
+    @apply w-5 h-5 text-gray-500 ml-3; /* 항상 보이도록 유지 */
+    visibility: visible; /* V 아이콘을 항상 표시 */
+  }
+  
+  /* 돋보기 아이콘 */
+  .q {
+    @apply w-6 h-6 text-gray-500 ml-4;
+  }
+  /* --------------------------------------search */
+  /* 전체 카테고리 컨테이너 */
+/* 전체 카테고리 컨테이너 */
+.category {
+    @apply flex flex-col items-center w-full max-w-5xl mx-auto px-4;
+  }
+  
+  /* 카테고리 제목 */
+  .categorytitle {
+    @apply text-lg font-bold text-gray-800 mb-4;
+  }
+  
+  /* 카테고리 타입 리스트 */
+  .categorytype {
+    @apply flex gap-6 w-full overflow-x-auto whitespace-nowrap justify-center;
+    scroll-snap-type: x mandatory; /* 스크롤 스냅 활성화 */
+    -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
+  }
+  
+  /* 각각의 아이템 박스 */
+  .itembox {
+    @apply flex flex-col items-center justify-center space-y-2 w-48 sm:w-32 lg:w-40;
+  }
+  
+  /* 원형 이미지 컨테이너 */
+  .typeimage {
+    @apply relative w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 flex items-center justify-center bg-gray-300 rounded-full overflow-hidden;
+  }
+  
+  /* 원형 배경 */
+  .fakecircle {
+    @apply w-full h-full bg-gray-400 rounded-full;
+  }
+  
+  /* 타입 이름 */
+  .typename {
+    @apply text-sm text-gray-700 sm:text-base font-medium text-center;
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .categorytype {
+      @apply justify-start; /* 모바일에서는 왼쪽 정렬 */
+      scroll-padding-left: 16px; /* 스크롤 시작 위치를 조정 */
+    }
+  }
+  /* 스크롤바 숨기기 */
+  .categorytype::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리 등에서 스크롤바 숨기기 */
+  }
+  
+  .categorytype {
+    -ms-overflow-style: none; /* IE에서 스크롤바 숨기기 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+  }
+  /* recommmmmmmmmmmmmmmmmmmmmm */
+
+  /* 추천 목록 전체 컨테이너 */
+/* 추천 목록 전체 컨테이너 */
+.recom {
+    @apply flex flex-col items-center w-full max-w-6xl mx-auto px-4 py-4;
+  }
+  
+  /* 추천 목록 제목 */
+  .recomtitle {
+    @apply text-lg font-bold text-gray-800 mb-4;
+  }
+  
+  /* 추천 목록 내용 컨테이너 */
+  .recomcontent {
+    @apply grid gap-4 w-full;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 반응형으로 열 조정 */
+  padding-bottom: calc(80px); 
+}
+  
+  /* 개별 추천 아이템 박스 */
+  .recomitembox {
+    @apply flex flex-col bg-gray-200 rounded-lg shadow-md p-3 w-full;
+  }
+  
+  /* 추천 아이템 이미지 */
+  .recomitemphoto {
+    @apply w-full h-20 object-cover rounded-md mb-2;
+  }
+  
+  /* 추천 아이템 이름 */
+  .itemname {
+    @apply text-sm font-bold text-gray-800 mb-1;
+  }
+  
+  /* 추천 아이템 가격 */
+  .itemprice {
+    @apply text-sm font-medium text-gray-600 text-right; /* 가격을 오른쪽 정렬 */
+  }
+  
+  /* 추천 아이템 설명 */
+  .itemdescription {
+    @apply text-xs text-gray-600;
+  }
+  .recom {
+    @apply flex flex-col items-center w-full max-w-6xl mx-auto px-4 py-4;
+  }
+  
+  /* 추천 목록 제목 */
+  .recomtitle {
+    @apply text-lg font-bold text-gray-800 mb-4;
+  }
+  
+  /* 추천 목록 내용 컨테이너 */
+  .recomcontent {
+    @apply grid gap-4 w-full;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 반응형으로 열 조정 */
+  }
+  
+  /* 개별 추천 아이템 박스 */
+  .recomitembox {
+    @apply flex flex-col bg-gray-200 rounded-lg shadow-md p-3 w-full;
+  }
+  
+  /* 추천 아이템 이미지 */
+  .recomitemphoto {
+    @apply w-full h-20 object-cover rounded-md mb-2;
+  }
+  
+  /* 추천 아이템 이름 */
+  .itemname {
+    @apply text-sm font-bold text-gray-800 mb-1;
+  }
+  
+  /* 추천 아이템 가격 */
+  .itemprice {
+    @apply text-sm font-medium text-gray-600 text-right; /* 가격을 오른쪽 정렬 */
+  }
+  
+  /* 추천 아이템 설명 */
+  .itemdescription {
+    @apply text-xs text-gray-600;
+  }
+  
