@@ -5,6 +5,7 @@ import Splash from './pages/Splash/Splash.tsx';
 import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
 import Signup from './pages/Signup/Signup.tsx';
+import CreateProduct from './pages/CreateProduct/CreateProduct.tsx';
 
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
@@ -52,9 +53,14 @@ const AnimatedRoutes = () => {
             <Login />
           </PageTransition>
         } />
-        <Route path="/signup" element={    // Signup 라우트 추가
+        <Route path="/signup" element={
           <PageTransition isSlide={false}>
             <Signup />
+          </PageTransition>
+        } />
+        <Route path="/create-product" element={
+          <PageTransition isSlide={false}>
+            <CreateProduct />
           </PageTransition>
         } />
       </Routes>
