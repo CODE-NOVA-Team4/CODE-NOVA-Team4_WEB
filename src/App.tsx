@@ -6,6 +6,8 @@ import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
 import Signup from './pages/Signup/Signup.tsx';
 import CreateProduct from './pages/CreateProduct/CreateProduct.tsx';
+import ChatList from './pages/ChatList/ChatList.tsx';
+
 
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
@@ -61,6 +63,11 @@ const AnimatedRoutes = () => {
         <Route path="/create-product" element={
           <PageTransition isSlide={false}>
             <CreateProduct />
+          </PageTransition>
+        } />
+        <Route path="/chats" element={
+          <PageTransition isSlide={false}>
+            <ChatList />
           </PageTransition>
         } />
       </Routes>

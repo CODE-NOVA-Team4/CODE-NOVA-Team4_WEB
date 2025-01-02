@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api/axios.ts';
 import styles from './Signup.module.css';
@@ -13,8 +13,30 @@ interface SignupForm {
   passwordConfirm: string;
 }
 
+const fetchDepartments = async () => {
+  try {
+    const response = await api.get('/api/departments');
+    setDepartments(response.data);
+  } catch (error) {
+    console.error('학과 목록 가져오기 실패:', error);
+  }
+};
+
 const Signup = () => {
   const navigate = useNavigate();
+  const [departments, setDepartments] = useState<string[]>([
+    '컴퓨터공학부',
+    '소프트웨어학과',
+    '전자공학부',
+    '산업공학과',
+    '경영학과',
+    '경제학과',
+    '국어국문학과',
+    '영어영문학과',
+    '건축학과',
+    '화학공학과' // 임시데이터
+  ]);
+  const [showDepartments, setShowDepartments] = useState(false);
   const [formData, setFormData] = useState<SignupForm>({
     name: '',
     department: '',
@@ -26,6 +48,37 @@ const Signup = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [emailVerified, setEmailVerified] = useState(false);
   const [errors, setErrors] = useState<Partial<SignupForm>>({});
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const response = await api.get('/api/departments');
+        setDepartments(response.data);
+      } catch (error) {
+        console.error('학과 목록 가져오기 실패:', error);
+      }
+    };
+    
+    fetchDepartments();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const dropdown = document.querySelector(`.${styles.departmentDropdown}`);
+      const input = document.querySelector(`.${styles.departmentWrapper} input`);
+      
+      if (dropdown && input && 
+          !dropdown.contains(event.target as Node) && 
+          !input.contains(event.target as Node)) {
+        setShowDepartments(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -145,14 +198,34 @@ const verifyCode = async () => {
 
           <div className={styles.formGroup}>
             <label className={styles.label}>학과</label>
-            <input
-              type="text"
-              name="department"
-              placeholder="본인의 학과를 입력해주세요."
-              value={formData.department}
-              onChange={handleChange}
-              className={styles.input}
-            />
+            <div className={styles.departmentWrapper}>
+              <input
+                type="text"
+                name="department"
+                placeholder="본인의 학과를 선택해주세요."
+                value={formData.department}
+                onChange={handleChange}
+                onClick={() => setShowDepartments(true)}
+                className={styles.input}
+                readOnly
+              />
+              {showDepartments && (
+                <div className={styles.departmentDropdown}>
+                  {departments.map((dept, index) => (
+                    <div
+                      key={index}
+                      className={styles.departmentItem}
+                      onClick={() => {
+                        setFormData(prev => ({ ...prev, department: dept }));
+                        setShowDepartments(false);
+                      }}
+                    >
+                      {dept}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             {errors.department && <span className={styles.error}>{errors.department}</span>}
           </div>
 
