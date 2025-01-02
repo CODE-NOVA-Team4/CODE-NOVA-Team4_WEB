@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api/axios.ts';
 import styles from './Signup.module.css';
+import backgreenArrow from '../../assets/images/arrow-green.svg';
 
 interface SignupForm {
   name: string;
@@ -120,6 +121,12 @@ const verifyCode = async () => {
 
   return (
     <div className={styles.container}>
+       <button 
+            onClick={() => navigate(-1)} 
+            className={styles.backButton}
+        >
+        <img src={backgreenArrow} alt="back" />
+        </button> 
       <div className={styles.header}>회원가입</div>
       <div className={styles.content}>
         <form onSubmit={handleSubmit} className={styles.form}>

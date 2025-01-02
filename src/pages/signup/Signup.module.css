@@ -8,7 +8,25 @@
   position: relative;
 }
 
+.backButton {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-block: 0.5rem;
+}
+
+.backButton img {
+  width: 24px;
+  height: 24px;
+}
+
 .header {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
   padding: 1rem;
   font-size: 1.5rem;
   font-weight: bold;

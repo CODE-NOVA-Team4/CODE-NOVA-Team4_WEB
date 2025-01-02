@@ -2,12 +2,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import logo from '../../assets/images/KUITSO-logo.svg';
+import backwhiteArrow from '../../assets/images/arrow-white.svg';
 
 const Login = () => {
   const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
+        <button 
+            onClick={() => navigate(-1)} 
+            className={styles.backButton}
+        >
+        <img src={backwhiteArrow} alt="back" />
+        </button> 
       <div className={styles.content}>
         <div className={styles.logo}>
          <img src={logo} alt="KUITSO" />
