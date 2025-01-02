@@ -5,6 +5,7 @@ import Splash from './pages/Splash/Splash.tsx';
 import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
 import Home from './pages/Home/Home.tsx';
+import Profile from './pages/Profile/Profile.tsx';
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
     initial: { x: '100%' },
@@ -43,7 +44,7 @@ const AnimatedRoutes = () => {
         } />
         <Route path="/welcome" element={
           <PageTransition isSlide={false}>
-            <Home />
+            <Profile />
           </PageTransition>
         } />
         <Route path="/login" element={

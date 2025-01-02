@@ -20,7 +20,7 @@ const Bottombar = () => {
 
             </div>
             <div className="bottom">
-                <img src={indicator} alt="" />
+                <img src={indicator} alt="" className={styles.indicator} />
             </div>
         </div>
     );

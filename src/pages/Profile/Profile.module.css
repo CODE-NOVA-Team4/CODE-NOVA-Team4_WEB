@@ -1,0 +1,50 @@
+/* 프로필 제목 컨테이너 */
+.profiletitle {
+    @apply flex justify-center items-center w-full px-4 py-2 border-b border-gray-300 bg-white shadow-md;
+    padding-top: calc(50px);
+    position: relative;
+
+  }
+  
+  /* 프로필 박스 */
+  .profilebox {
+    @apply flex items-center gap-4;
+  }
+  
+  /* 프로필 이미지 (원형) */
+  .circle {
+    @apply w-12 h-12 bg-gray-300 rounded-full relative flex items-center justify-center overflow-hidden;
+    position: relative;
+  }
+  
+  /* 배지
+  .circle::after {
+    @apply absolute bottom-0 right-0 text-xs font-bold text-white bg-pink-500 rounded-full w-5 h-5 flex items-center justify-center;
+    content: "15";
+  } */
+  
+  /* 이름 텍스트 */
+  .name {
+    @apply text-base font-bold text-gray-800;
+  }
+  
+  /* 학과명 텍스트 */
+  .subject {
+    @apply text-sm text-gray-600;
+  }
+  
+  /* 설정 아이콘 */
+  .setting {
+    @apply w-6 h-6 text-gray-600 cursor-pointer;
+  }
+  
+  /* 프로필 컨텐츠 */
+  .profilecontent {
+    @apply flex justify-between items-center gap-4 px-4 py-4 bg-gray-100;
+  }
+  
+  /* 버튼 */
+  .account {
+    @apply flex-1 text-center py-2 bg-gray-300 rounded-full text-gray-700 font-medium;
+  }
+  

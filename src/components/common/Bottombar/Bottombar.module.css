@@ -24,7 +24,8 @@
   .indicator {
     @apply flex justify-center items-center w-full relative -mt-2; /* 인디케이터를 위로 이동 */
     position: relative; /* 부모 컨테이너와 독립적으로 조정 */
-    bottom: 5px; /* 하단에서 약간 위로 올림 */
+    padding-bottom: 10px; /* 하단에서 약간 위로 올림 */
+
   }
   
   .indicator img {
