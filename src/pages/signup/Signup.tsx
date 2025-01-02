@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../api/axios.ts';
 import styles from './Signup.module.css';
@@ -6,11 +6,10 @@ import styles from './Signup.module.css';
 interface SignupForm {
   name: string;
   department: string;
-  grade: string;
   email: string;
+  verificationCode: string;
   password: string;
   passwordConfirm: string;
-  verificationCode: string;
 }
 
 const Signup = () => {
@@ -18,35 +17,14 @@ const Signup = () => {
   const [formData, setFormData] = useState<SignupForm>({
     name: '',
     department: '',
-    grade: '',
     email: '',
+    verificationCode: '',
     password: '',
     passwordConfirm: '',
-    verificationCode: '',
   });
   const [emailSent, setEmailSent] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(false);
   const [errors, setErrors] = useState<Partial<SignupForm>>({});
-
-  useEffect(() => {
-    const starryBg = document.createElement('div');
-    starryBg.className = styles['starry-bg'];
-    
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.className = styles.star;
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.animationDelay = `${Math.random() * 2}s`;
-      starryBg.appendChild(star);
-    }
-
-    const container = document.querySelector(`.${styles.container}`);
-    container?.appendChild(starryBg);
-
-    return () => {
-      starryBg.remove();
-    };
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -54,6 +32,14 @@ const Signup = () => {
       ...prev,
       [name]: value
     }));
+    
+    // 에러 메시지 초기화
+    if (errors[name as keyof SignupForm]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const validateForm = () => {
@@ -61,10 +47,10 @@ const Signup = () => {
     
     if (!formData.name) newErrors.name = '이름을 입력해주세요';
     if (!formData.department) newErrors.department = '학과를 입력해주세요';
-    if (!formData.grade) newErrors.grade = '학년을 입력해주세요';
     if (!formData.email.endsWith('@konkuk.ac.kr')) {
       newErrors.email = '건국대학교 이메일만 사용 가능합니다';
     }
+    if (!emailVerified) newErrors.verificationCode = '이메일 인증이 필요합니다';
     if (formData.password !== formData.passwordConfirm) {
       newErrors.passwordConfirm = '비밀번호가 일치하지 않습니다';
     }
@@ -73,8 +59,10 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  // 이메일 인증코드 발송
   const handleEmailVerification = async () => {
     try {
+      // 백엔드 API 엔드포인트와 통신
       await api.post('/api/auth/email-verification', {
         email: formData.email
       });
@@ -84,22 +72,46 @@ const Signup = () => {
     }
   };
 
+// 인증코드 확인
+const verifyCode = async () => {
+    try {
+      // 백엔드 API 엔드포인트와 통신
+      const response = await api.post('/api/auth/verify-code', {
+        email: formData.email,
+        code: formData.verificationCode
+      });
+      
+      // 인증 성공 시
+      if (response.data.success) {
+        setEmailVerified(true);
+      }
+    } catch (error) {
+      console.error('인증번호 확인 실패:', error);
+    }
+  };
+
+  const isFormValid = () => {
+    return (
+      formData.name &&
+      formData.department &&
+      formData.email.endsWith('@konkuk.ac.kr') &&
+      emailVerified &&
+      formData.password &&
+      formData.password === formData.passwordConfirm
+    );
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validateForm()) return;
 
     try {
       await api.post('/api/auth/signup', {
         name: formData.name,
         department: formData.department,
-        grade: formData.grade,
         email: formData.email,
         password: formData.password,
-        verificationCode: formData.verificationCode
       });
-      
-      // 회원가입 성공 시 로그인 페이지로 이동
       navigate('/login');
     } catch (error) {
       console.error('회원가입 실패:', error);
@@ -108,94 +120,120 @@ const Signup = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.header}>회원가입</div>
       <div className={styles.content}>
-        <h1>회원가입</h1>
-        <div className={styles.subTitle}>
-            <p>건국대학교 이메일로 인증 후</p>
-            <p>가입이 가능합니다</p>
-        </div>
         <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            type="text"
-            name="name"
-            placeholder="이름"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <span className={styles.error}>{errors.name}</span>}
-
-          <input
-            type="text"
-            name="department"
-            placeholder="학과"
-            value={formData.department}
-            onChange={handleChange}
-          />
-          {errors.department && <span className={styles.error}>{errors.department}</span>}
-
-          <input
-            type="text"
-            name="grade"
-            placeholder="학년"
-            value={formData.grade}
-            onChange={handleChange}
-          />
-          {errors.grade && <span className={styles.error}>{errors.grade}</span>}
-
-          <div className={styles.emailSection}>
-            <input
-              type="email"
-              name="email"
-              placeholder="건국대학교 이메일"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <button 
-              type="button"
-              onClick={handleEmailVerification}
-              disabled={!formData.email.endsWith('@konkuk.ac.kr')}
-            >
-              인증번호 전송
-            </button>
-          </div>
-          {errors.email && <span className={styles.error}>{errors.email}</span>}
-
-          {emailSent && (
+          <div className={styles.formGroup}>
+            <label className={styles.label}>닉네임</label>
             <input
               type="text"
-              name="verificationCode"
-              placeholder="인증번호 입력"
-              value={formData.verificationCode}
+              name="name"
+              placeholder="이름을 입력해주세요."
+              value={formData.name}
               onChange={handleChange}
+              className={styles.input}
             />
+            {errors.name && <span className={styles.error}>{errors.name}</span>}
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>학과</label>
+            <input
+              type="text"
+              name="department"
+              placeholder="본인의 학과를 입력해주세요."
+              value={formData.department}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            {errors.department && <span className={styles.error}>{errors.department}</span>}
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.label}>학교 이메일</label>
+            <div className={styles.emailSection}>
+              <input
+                type="email"
+                name="email"
+                placeholder="ex ) kuitso@konkuk.ac.kr"
+                value={formData.email}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <button
+                type="button"
+                onClick={handleEmailVerification}
+                disabled={!formData.email.endsWith('@konkuk.ac.kr')}
+                className={styles.verifyButton}
+              >
+                인증
+              </button>
+            </div>
+            {errors.email && <span className={styles.error}>{errors.email}</span>}
+          </div>
+
+          {emailSent && (
+            <div className={styles.formGroup}>
+              <input
+                type="text"
+                name="verificationCode"
+                placeholder="인증코드를 입력해주세요."
+                value={formData.verificationCode}
+                onChange={handleChange}
+                className={styles.input}
+              />
+              <button
+                type="button"
+                onClick={verifyCode}
+                className={styles.verifyButton}
+              >
+                확인
+              </button>
+            </div>
           )}
 
-          <input
-            type="password"
-            name="password"
-            placeholder="비밀번호"
-            value={formData.password}
-            onChange={handleChange}
-          />
+          <div className={styles.formGroup}>
+            <label className={styles.label}>비밀번호</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="비밀번호를 입력해 주세요."
+              value={formData.password}
+              onChange={handleChange}
+              className={styles.input}
+            />
+          </div>
 
-          <input
-            type="password"
-            name="passwordConfirm"
-            placeholder="비밀번호 확인"
-            value={formData.passwordConfirm}
-            onChange={handleChange}
-          />
-          {errors.passwordConfirm && (
-            <span className={styles.error}>{errors.passwordConfirm}</span>
-          )}
+          <div className={styles.formGroup}>
+            <label className={styles.label}>비밀번호 확인</label>
+            <input
+              type="password"
+              name="passwordConfirm"
+              placeholder="비밀번호를 한 번 더 입력해주세요."
+              value={formData.passwordConfirm}
+              onChange={handleChange}
+              className={styles.input}
+            />
+            {errors.passwordConfirm && (
+              <span className={styles.error}>{errors.passwordConfirm}</span>
+            )}
+          </div>
 
-          <button type="submit">가입하기</button>
+          <button
+            type="submit"
+            disabled={!isFormValid()}
+            className={styles.submitButton}
+          >
+            회원가입
+          </button>
         </form>
-
-        <div className={styles.links}>
-            <button type="button" onClick={() => navigate('/')}>
-                로그인 하러가기
-            </button>
+        <div className={styles.loginLink}>
+        <button 
+            onClick={() => navigate('/login')}
+            className={styles.loginButton}
+        >
+            로그인 화면으로 돌아가기
+        </button>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Splash from './pages/Splash/Splash.tsx';
 import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
+import Signup from './pages/Signup/Signup.tsx';
 
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
@@ -49,6 +50,11 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={
           <PageTransition isSlide={false}>
             <Login />
+          </PageTransition>
+        } />
+        <Route path="/signup" element={    // Signup 라우트 추가
+          <PageTransition isSlide={false}>
+            <Signup />
           </PageTransition>
         } />
       </Routes>
