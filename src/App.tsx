@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Splash from './pages/Splash/Splash.tsx';
 import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
-
+import Home from './pages/Home/Home.tsx';
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
     initial: { x: '100%' },
@@ -43,7 +43,7 @@ const AnimatedRoutes = () => {
         } />
         <Route path="/welcome" element={
           <PageTransition isSlide={false}>
-            <Welcome />
+            <Home />
           </PageTransition>
         } />
         <Route path="/login" element={

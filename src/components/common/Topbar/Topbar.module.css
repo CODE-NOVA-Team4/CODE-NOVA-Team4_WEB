@@ -1,0 +1,19 @@
+/* Topbar.module.css */
+
+.topbar {
+    @apply flex items-center justify-between px-10 py-2 shadow-md border-b border-gray-200; /* 기본 Tailwind 클래스 */
+    background-color: #036b3f; /* 사용자 지정 색상 */
+  }
+  
+  .time {
+    @apply text-base font-bold text-black; /* 흰색 글자색으로 변경 */
+  }
+  
+  .state {
+    @apply flex items-center gap-2;
+  }
+  
+  .state img {
+    @apply h-5;
+  }
+  

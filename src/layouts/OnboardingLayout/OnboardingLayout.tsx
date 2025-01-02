@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './OnboardingLayout.module.css';
 import { OnboardingLayoutProps } from './OnboardingLayout.types';
+// @ts-ignore
 import KULogo from '../../assets/images/KU-logo.svg';
 
 const OnboardingLayout = ({ children }: OnboardingLayoutProps) => {
