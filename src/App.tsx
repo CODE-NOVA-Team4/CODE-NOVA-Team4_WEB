@@ -5,7 +5,8 @@ import Splash from './pages/Splash/Splash.tsx';
 import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
 import Home from './pages/Home/Home.tsx';
-import Profile from './pages/Profile/Profile.tsx';
+import Profile from './pages/Home-Profile/Profile.tsx';
+import Hcategory from './pages/Home-category/Hcategory.tsx';
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
     initial: { x: '100%' },
@@ -44,12 +45,22 @@ const AnimatedRoutes = () => {
         } />
         <Route path="/welcome" element={
           <PageTransition isSlide={false}>
-            <Profile />
+            <Welcome />
           </PageTransition>
         } />
         <Route path="/login" element={
           <PageTransition isSlide={false}>
             <Login />
+          </PageTransition>
+        } />
+        <Route path="/Home" element={
+          <PageTransition isSlide={false}>
+            <Home />
+          </PageTransition>
+        } />
+        <Route path="/Hcategory/:name" element={
+          <PageTransition isSlide={false}>
+            <Hcategory />
           </PageTransition>
         } />
       </Routes>

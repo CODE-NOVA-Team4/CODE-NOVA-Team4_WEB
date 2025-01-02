@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Home.module.css';
+import { useNavigate } from "react-router-dom";
 
 const Category = () => {
     const categories = [
@@ -9,13 +10,18 @@ const Category = () => {
         { name: "전자기기", src: "/images/electronics.png", description: "노트북, 태블릿 등 전자 기기" },
         { name: "의류", src: "/images/clothing.png", description: "일상복, 운동복 등 의류" },
       ];
+      const navigate = useNavigate();
+      const handleCategoryClick = (name) => {
+        navigate(`/hcategory/${name}`); // 클릭 시 Hcategory로 이동
+      };
   return <div className={styles.category}>
             <div className={styles.categorytitle}>
                 카테고리 바로가기
             </div>
             <div className={styles.categorytype}>
                 {categories.map((Category,index)=>(
-                    <div key={index} className={styles.itembox}>
+                    <div key={index} className={styles.itembox}
+                    onClick={()=>handleCategoryClick(Category.name)}>
                         <div className={styles.typeimage}>
                             {/* 임시 원원 */}
                             <div className={styles.fakecircle}></div>

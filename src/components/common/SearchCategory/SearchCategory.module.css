@@ -1,0 +1,49 @@
+/* 검색 바 컨테이너 */
+.searchBar {
+    @apply flex items-center w-full max-w-2xl px-4 py-2 bg-gray-200 rounded-full;
+    transition: all 0.3s ease;
+  }
+  
+  /* 검색 입력창 */
+  .searchInput {
+    @apply flex-1 text-gray-700 bg-transparent outline-none;
+    font-size: 1rem;
+  }
+  
+  /* 검색 버튼 (아이콘) */
+  .searchButton {
+    @apply w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center cursor-pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .searchButton:hover {
+    @apply bg-gray-400;
+  }
+  .searchBox {
+    @apply flex flex-col w-[402px] h-[70px] p-[12px_24px] items-start gap-[10px] shrink-0;
+    @apply mx-auto my-4; /* 가로 중앙 정렬 및 상단 여백 */
+  }
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .searchBar {
+      @apply px-3 py-2; /* 모바일에서는 패딩 축소 */
+    }
+  
+    .searchInput {
+      font-size: 0.9rem; /* 글씨 크기 축소 */
+    }
+    .searchBox {
+        @apply w-[90%] h-[60px]; /* 모바일 화면에서 너비와 높이 축소 */
+        @apply p-[10px_16px]; /* 모바일에서 패딩 축소 */
+      }
+    .searchButton {
+      @apply w-5 h-5; /* 검색 버튼 크기 축소 */
+    }
+  }
+  @media (min-width: 1024px) {
+    .searchBox {
+      @apply w-[70%] h-[80px];
+      @apply mx-auto my-4; /* 가로 중앙 정렬 및 상단 여백 */
+      /* 데스크톱 화면에서 크기 확대 */
+    }
+  }
