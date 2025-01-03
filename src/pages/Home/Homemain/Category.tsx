@@ -5,7 +5,12 @@ import one from "../../../assets/images/Home-Category-one.svg"
 import two from "../../../assets/images/Home-Category-two.svg"
 import three from "../../../assets/images/Home-Category-three.svg"
 import four from "../../../assets/images/Home-Category-four.svg"
-import five from "../../../assets/images/Home-Category-four.svg"
+import five from "../../../assets/images/Home-Category-five.svg"
+import six from "../../../assets/images/Home-Category-six.svg"
+import seven from "../../../assets/images/Home-Category-seven.svg"
+import eight from "../../../assets/images/Home-Category-eight.svg"
+import nine from "../../../assets/images/Home-Category-nine.svg"
+
 import axios from 'axios';
 
 const Category = () => {
@@ -15,10 +20,10 @@ const Category = () => {
         { name: "학용품", src: three, },
         { name: "전자기기", src: four,  },
         { name: "의류", src: five,  },
-        { name: "생활용품", src: five, },
-        { name: "취미/여가", src: five, },
-        { name: "운동용품", src: five, },
-        { name: "기타", src: five, },
+        { name: "생활용품", src: six, },
+        { name: "취미/여가", src: seven, },
+        { name: "운동용품", src: eight, },
+        { name: "기타", src: nine, },
       ];
       const navigate = useNavigate();
       const handleCategoryClick = (name) => {
