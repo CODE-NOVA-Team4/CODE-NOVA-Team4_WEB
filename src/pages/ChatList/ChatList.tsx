@@ -96,7 +96,6 @@ const ChatList = () => {
   //     };
   //   }
   // }, []);
-  //test
 
   const formatTime = (timestamp: string) => {
     try {
@@ -114,9 +113,6 @@ const ChatList = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <button onClick={() => navigate(-1)} className={styles.backButton}>
-          <img src={backgreenArrow} alt="back" />
-        </button>
         <h1>채팅 목록</h1>
       </div>
 

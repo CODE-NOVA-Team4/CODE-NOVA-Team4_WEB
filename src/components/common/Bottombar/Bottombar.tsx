@@ -53,9 +53,6 @@ const Bottombar = () => {
           <img src={home} alt="Chat" />
         </div>
       </div>}
-            <div className={styles.bottom}>
-                <img src={indicator} alt="" className={styles.indicator} />
-            </div>
         </div>
     );
 };

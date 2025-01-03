@@ -119,6 +119,7 @@
 .inputGroup textarea {
   min-height: 0px;
   resize: none;
+  border-radius: 30px;
 }
 
 .inputGroup input::placeholder {
@@ -176,8 +177,8 @@
 
 .imageWrapper {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 98px;
+  height: 98px;
   border-radius: 8px;
   overflow: hidden;
 }

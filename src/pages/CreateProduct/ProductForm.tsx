@@ -179,7 +179,9 @@ const ProductForm: React.FC<ProductFormProps> = ({ mode, productId }) => {
           />
           <label htmlFor="imageUpload" className={styles.imageUploadLabel}>
             <div className={styles.uploadIcon}>+</div>
-            <p>최대 5장의 사진을 첨부해주세요</p>
+            {formData.images.length === 0 && formData.existingImages.length === 0 && (
+              <p>최대 5장의 사진을 첨부해주세요</p>
+            )}
           </label>
           <div className={styles.imagePreview}>
             {formData.existingImages.map((imgUrl, idx) => (
