@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '../../api/axios.ts';
 import styles from './Login.module.css';
 import backwhiteArrow from '../../assets/images/arrow-white.svg';
 import logogreen from '../../assets/images/logo-korean-green.svg';
+import axios from 'axios';
 interface LoginResponse {
   userId: string;
 }
@@ -38,7 +38,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   setError('');
 
   try {
-    const response = await api.post<LoginResponse>(
+    const response = await axios.post<LoginResponse>(
       '/auth/login',
       formData,
       {

@@ -11,9 +11,8 @@ interface Emailinfo {
 }
 
 const Settinginfo = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [Einfo, setEinfo] = useState<Emailinfo>({
-
     nickname: '',
     department: '',
     email: '',
@@ -29,97 +28,60 @@ const Settinginfo = () => {
 
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleLogout = async () => {
-      try {
-          const userId = localStorage.getItem('userId');
-          if (!userId) {
-              console.error('사용자 ID가 없습니다.');
-              return;
-          }
+  const handleSave = async () => {
+    try {
+      const updatedInfo = {
+        nickname: fields.find((field) => field.id === 1)?.value || '',
+        department: fields.find((field) => field.id === 2)?.value || '',
+        password: fields.find((field) => field.id === 4)?.value || '',
+      };
 
-          const sessionId = document.cookie
-          .split('; ')
-          .find(row => row.startsWith('sessionId=')) // 쿠키 이름을 sessionId로 변경
-          ?.split('=')[1];
-          console.log(sessionId);
-        
-        const response = await axios.post(
-          '/auth/logout',
-          null,
-          {
-            headers: {
-              //'Authorization': `Bearer ${localStorage.getItem('token')}`,
-              'Content-Type': 'application/json',
-              //'Cookie': `sessionId=${sessionId}`, // sessionId 쿠키를 헤더에 포함
-            },
-            withCredentials: true, // 쿠키와 함께 요청
-            timeout: 10000, // 타임아웃 설정
-          }
-        );
-        
-  
-          console.log('로그아웃 응답:', response.data);
-  
-          if (response.data.status === 200) {
-              // 로컬 스토리지와 상태 초기화
-              localStorage.clear();
-              navigate('/welcome');
-          }
-      } catch (error: any) {
-          console.error('로그아웃 실패:', error.response?.data || error);
-          // 네트워크 에러 발생 시에도 상태 초기화
-          localStorage.clear();
-          navigate('/welcome');
+      const userId = localStorage.getItem('userId');
+      if (!userId) {
+        console.error('사용자 ID가 없습니다.');
+        return;
       }
+
+      // 서버에 PATCH 요청
+      const response = await axios.patch(`/users/${userId}/info`, updatedInfo, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      });
+
+      console.log('수정 완료:', response.data);
+
+      // 업데이트된 데이터 다시 가져오기
+      const fetchUpdatedData = async () => {
+        try {
+          const updatedResponse = await axios.get(`/users/${userId}/info`);
+          const result = updatedResponse.data.result;
+          setEinfo(result); // 최신 데이터로 업데이트
+        } catch (error) {
+          console.error('업데이트된 데이터 가져오기 실패:', error);
+        }
+      };
+
+      await fetchUpdatedData();
+
+      // 수정 상태 종료
+      setIsEditing(false);
+    } catch (error) {
+      console.error('수정 저장 중 오류 발생:', error);
+    }
   };
-  
 
-const handleWithdrawal = async () => {
-  if (window.confirm('정말 탈퇴하시겠습니까?')) {
-      try {
-          const userId = localStorage.getItem('userId');
-          if (!userId) {
-              console.error('사용자 ID가 없습니다.');
-              return;
-          }
-
-          console.log('회원탈퇴 요청 시작');  // 디버깅용 로그 추가
-
-          const response = await axios.patch('/auth/signout', {}, {  // 빈 객체라도 데이터로 전송
-              headers: {
-                  'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                  'Content-Type': 'application/json'
-              },
-              withCredentials: true,
-              timeout: 10000  // 타임아웃 시간 증가1
-              
-          });
-          
-          console.log('회원탈퇴 응답:', response.data);
-
-          if (response.data.status === 200) {
-              localStorage.clear();
-              navigate('/welcome');
-          }
-      } catch (error: any) {
-          console.error('회원탈퇴 에러 상세:', {
-              message: error.message,
-              response: error.response?.data,
-              status: error.response?.status
-          });
-          
-          // 네트워크 에러가 발생해도 로그아웃 처리
-          localStorage.clear();
-          navigate('/welcome');
-      }
-  }
-};
-const userId = localStorage.getItem('userId');
-console.log(`userid:${userId}`);
-  // Fetch data on component mount
+  // Fetch initial data
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+          console.error('사용자 ID가 없습니다.');
+          return;
+        }
+
         const response = await axios.get(`/users/${userId}/info`);
         const result = response.data.result;
         setEinfo(result); // Einfo 업데이트
@@ -151,7 +113,11 @@ console.log(`userid:${userId}`);
   }, [Einfo]);
 
   const toggleEdit = () => {
-    setIsEditing(!isEditing);
+    if (isEditing) {
+      handleSave(); // 저장하기 클릭 시 저장
+    } else {
+      setIsEditing(true); // 수정하기 클릭 시 수정 가능 상태로 전환
+    }
   };
 
   return (
@@ -167,7 +133,7 @@ console.log(`userid:${userId}`);
               type={field.type}
               value={field.value || ''}
               className={`${styles.input} ${field.disabled ? styles.disabled : ''}`}
-              disabled={field.disabled || !isEditing}
+              disabled={field.disabled || !isEditing || field.id === 3} // 이메일 필드 항상 비활성화
               onChange={(e) =>
                 setFields((prevFields) =>
                   prevFields.map((f) =>
@@ -189,27 +155,6 @@ console.log(`userid:${userId}`);
         <div className={styles.setbutton} onClick={toggleEdit}>
           {isEditing ? '저장하기' : '수정하기'}
         </div>
-        {!isEditing && (
-          <div className={styles.andbox}>
-          <div 
-              className={styles.logout}
-              onClick={handleLogout}
-              role="button"
-              tabIndex={0}
-          >
-              로그아웃
-          </div>
-          <div 
-              className={styles.out}
-              onClick={handleWithdrawal}
-              role="button"
-              tabIndex={0}
-          >
-              회원탈퇴
-          </div>
-      </div>
-
-        )}
       </div>
     </div>
   );
