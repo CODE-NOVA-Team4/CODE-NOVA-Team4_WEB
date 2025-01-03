@@ -1,114 +1,156 @@
 /* 전체 컨테이너 */
 .profileForm {
-    @apply flex flex-col items-center w-full max-w-lg mx-auto gap-6 px-4 py-8; /* 중앙 정렬 및 간격 */
-  }
-  
-  /* 아바타 영역 */
-  .avatar {
-    @apply flex justify-center items-center w-24 h-24 bg-gray-100 rounded-full; /* 원형 배경 */
-  }
-  
-  .circle {
-    @apply w-full h-full bg-gray-200 rounded-full; /* 프로필 사진 자리 */
-  }
-  
-  /* 폼 */
-  .form {
-    @apply w-full flex flex-col gap-6; /* 입력 필드 간격 */
-  }
-  
-  .formGroup {
-    @apply flex flex-col gap-2; /* 레이블과 입력 필드 간격 */
-  }
-  
-  .label {
-    @apply text-sm text-gray-600; /* 레이블 스타일 */
-  }
-  
-  .input {
-    @apply w-full bg-gray-100 text-gray-800 text-sm px-4 py-2 rounded-lg outline-none; /* 입력 필드 스타일 */
-  }
-  
-  .disabled {
-    @apply bg-gray-200 text-gray-500 cursor-not-allowed; /* 비활성화 필드 스타일 */
-  }
-  
-  /* 반응형 설정 */
-  @media (max-width: 768px) {
-    .profileForm {
-      @apply px-2 py-6; /* 모바일에서 패딩 축소 */
-    }
-  
-    .avatar {
-      @apply w-20 h-20; /* 아바타 크기 축소 */
-    }
-  
-    .input {
-      @apply text-xs; /* 입력 필드 텍스트 크기 축소 */
-    }
-  }
-  @media (min-width: 1024px) {
-    .profileForm {
-      @apply max-w-4xl px-12 py-16; /* 데스크톱에서 더 큰 크기 */
-    }
-  
-    .avatar {
-      @apply w-36 h-36; /* 아바타 크기 확대 */
-    }
-  
-    .formGroup {
-      @apply gap-4; /* 레이블과 입력 필드 간격 확대 */
-    }
-  
-    .label {
-      @apply text-lg; /* 레이블 텍스트 크기 확대 */
-    }
-  
-    .input {
-      @apply text-lg px-6 py-4; /* 입력 필드 크기 확대 */
-    }
-  }
-  /* 전체 버튼 박스 */
-.buttonbox {
-    @apply flex flex-col items-center gap-4 w-full max-w-lg mx-auto mt-8; /* 가로 중앙 정렬 및 간격 */
-  margin-bottom: calc(50px)
+  @apply flex flex-col items-center w-full max-w-lg mx-auto gap-6 px-4 py-8; /* 중앙 정렬 및 간격 */
 }
-  
-  /* 수정하기 / 저장하기 버튼 */
+
+/* 아바타 영역 */
+.avatar {
+  @apply flex justify-center items-center w-24 h-24 bg-gray-100 rounded-full; /* 원형 배경 */
+}
+
+.circle {
+  @apply w-full h-full bg-gray-200 rounded-full; /* 프로필 사진 자리 */
+}
+
+/* 폼 */
+.form {
+  @apply w-full flex flex-col gap-6; /* 입력 필드 간격 */
+}
+
+.formGroup {
+  @apply flex flex-col gap-2; /* 레이블과 입력 필드 간격 */
+}
+
+.label {
+  font-size: 18px;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: #121212;
+}
+
+.input {
+  width: 100%;
+  border-radius: 50px;
+  border: 2px #f4f4f4 solid;
+  background-color: white;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity, 1));
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  --tw-bg-opacity: 1;
+  background-color: #f4f4f4;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+
+/* 반응형 설정 */
+@media (max-width: 768px) {
+  .profileForm {
+    padding: 1rem;
+  }
+
+  .avatar {
+    height: 165px;
+    width: 165px /* 아바타 크기 축소 */;
+  }
+
+  .input {
+    font-size: 18px;
+    line-height: 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .profileForm {
+    @apply max-w-4xl px-12 py-16; /* 데스크톱에서 더 큰 크기 */
+  }
+
+  .avatar {
+    @apply w-36 h-36; /* 아바타 크기 확대 */
+  }
+
+  .formGroup {
+    @apply gap-4; /* 레이블과 입력 필드 간격 확대 */
+  }
+
+  .label {
+    @apply text-lg; /* 레이블 텍스트 크기 확대 */
+  }
+
+  .input {
+    @apply text-lg px-6 py-4; /* 입력 필드 크기 확대 */
+  }
+}
+/* 전체 버튼 박스 */
+.buttonbox {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 100%;
+  max-width: 32rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: calc(50px);
+}
+
+/* 수정하기 / 저장하기 버튼 */
+.setbutton {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 9999px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-align: center;
+  font-weight: 700;
+  color: #121212;
+  transition: background-color 0.3s ease;
+  transition: border 0.3s ease;
+  background-color: #dae000;
+  border: 2px #dae000 solid;
+}
+
+.setbutton:hover {
+  background-color: #f5a200;
+  border: 2px #f5a200 solid;
+}
+
+/* 로그아웃 / 회원탈퇴 컨테이너 */
+.andbox {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+
+/* 로그아웃 / 회원탈퇴 버튼 */
+.logout,
+.out {
+  @apply text-sm cursor-pointer; /* 텍스트 스타일 */
+}
+
+/* 반응형 설정 */
+@media (max-width: 768px) {
+  .buttonbox {
+    gap: 1rem;
+  }
+
   .setbutton {
-    @apply w-full text-black font-bold text-center py-3 rounded-full cursor-pointer; /* 버튼 스타일 */
-    transition: background-color 0.3s ease;
-    background-color: #DAE000;
+    padding: 1rem;
+    font-size: 18px;
+    line-height: 1.25rem;
   }
-  
-  .setbutton:hover {
-    @apply bg-yellow-500; /* 호버 시 배경색 변경 */
-  }
-  
-  /* 로그아웃 / 회원탈퇴 컨테이너 */
-  .andbox {
-    @apply flex justify-around w-full text-gray-600; /* 버튼 간 간격 */
-  }
-  
-  /* 로그아웃 / 회원탈퇴 버튼 */
+
   .logout,
   .out {
-    @apply text-sm cursor-pointer; /* 텍스트 스타일 */
+    font-size: 1rem;
+    line-height: 1rem;
   }
-  
-  /* 반응형 설정 */
-  @media (max-width: 768px) {
-    .buttonbox {
-      @apply gap-3 mt-6; /* 작은 화면에서 간격 축소 */
-    }
-  
-    .setbutton {
-      @apply py-2 text-sm; /* 작은 화면에서 버튼 크기 축소 */
-    }
-  
-    .logout,
-    .out {
-      @apply text-xs; /* 텍스트 크기 축소 */
-    }
-  }
-  
+}
