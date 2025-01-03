@@ -174,13 +174,15 @@ const verifyCode = async () => {
 
   return (
     <div className={styles.container}>
-       <button 
-            onClick={() => navigate(-1)} 
-            className={styles.backButton}
+      <div className={styles.header}>
+        <button 
+          onClick={() => navigate(-1)} 
+          className={styles.backButton}
         >
         <img src={backgreenArrow} alt="back" />
-        </button> 
-      <div className={styles.header}>회원가입</div>
+        </button>
+        <span className={styles.headerspan}>회원가입</span>
+      </div>
       <div className={styles.content}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
@@ -307,14 +309,6 @@ const verifyCode = async () => {
             회원가입
           </button>
         </form>
-        <div className={styles.loginLink}>
-        <button 
-            onClick={() => navigate('/login')}
-            className={styles.loginButton}
-        >
-            로그인 화면으로 돌아가기
-        </button>
-        </div>
       </div>
     </div>
   );

@@ -26,10 +26,10 @@
 .header {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
-  padding: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  padding-top: 0.4rem;
+  padding-bottom: 3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .content {
@@ -65,14 +65,14 @@
 .input {
   width: 100%;
   padding: 1rem;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  border-radius: 50px;
+  border: 1px solid #F4F4F4;
   background: white;
   font-size: 0.9rem;
 }
 
 .input::placeholder {
-  color: #9ca3af;
+  color: #666666;
 }
 
 .emailSection {
@@ -87,9 +87,9 @@
 
 .verifyButton {
   padding: 1rem 1.5rem;
-  border-radius: 12px;
-  background: #036b3f;
-  color: white;
+  border-radius: 50px;
+  background: #dae000;
+  color: #121212;
   border: none;
   cursor: pointer;
   white-space: nowrap;
@@ -108,7 +108,7 @@
 
 .submitButton {
   padding: 1rem;
-  border-radius: 12px;
+  border-radius: 50px;
   font-weight: 500;
   border: none;
   cursor: pointer;
@@ -123,8 +123,8 @@
 }
 
 .submitButton:enabled {
-  background: #036b3f;
-  color: white;
+  background: #dae000;
+  color: black;
 }
 
 .loginLink {
@@ -143,7 +143,6 @@
   font-size: 0.9rem;
 }
 
-/* Signup.module.css에 추가 */
 .departmentWrapper {
   position: relative;
   width: 100%;
@@ -193,6 +192,6 @@
 
 @media (max-width: 768px) {
   .content {
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 0rem;
   }
 }
