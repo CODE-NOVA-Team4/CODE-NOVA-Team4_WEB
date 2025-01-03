@@ -1,0 +1,114 @@
+/* 전체 컨테이너 */
+.profileForm {
+    @apply flex flex-col items-center w-full max-w-lg mx-auto gap-6 px-4 py-8; /* 중앙 정렬 및 간격 */
+  }
+  
+  /* 아바타 영역 */
+  .avatar {
+    @apply flex justify-center items-center w-24 h-24 bg-gray-100 rounded-full; /* 원형 배경 */
+  }
+  
+  .circle {
+    @apply w-full h-full bg-gray-200 rounded-full; /* 프로필 사진 자리 */
+  }
+  
+  /* 폼 */
+  .form {
+    @apply w-full flex flex-col gap-6; /* 입력 필드 간격 */
+  }
+  
+  .formGroup {
+    @apply flex flex-col gap-2; /* 레이블과 입력 필드 간격 */
+  }
+  
+  .label {
+    @apply text-sm text-gray-600; /* 레이블 스타일 */
+  }
+  
+  .input {
+    @apply w-full bg-gray-100 text-gray-800 text-sm px-4 py-2 rounded-lg outline-none; /* 입력 필드 스타일 */
+  }
+  
+  .disabled {
+    @apply bg-gray-200 text-gray-500 cursor-not-allowed; /* 비활성화 필드 스타일 */
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .profileForm {
+      @apply px-2 py-6; /* 모바일에서 패딩 축소 */
+    }
+  
+    .avatar {
+      @apply w-20 h-20; /* 아바타 크기 축소 */
+    }
+  
+    .input {
+      @apply text-xs; /* 입력 필드 텍스트 크기 축소 */
+    }
+  }
+  @media (min-width: 1024px) {
+    .profileForm {
+      @apply max-w-4xl px-12 py-16; /* 데스크톱에서 더 큰 크기 */
+    }
+  
+    .avatar {
+      @apply w-36 h-36; /* 아바타 크기 확대 */
+    }
+  
+    .formGroup {
+      @apply gap-4; /* 레이블과 입력 필드 간격 확대 */
+    }
+  
+    .label {
+      @apply text-lg; /* 레이블 텍스트 크기 확대 */
+    }
+  
+    .input {
+      @apply text-lg px-6 py-4; /* 입력 필드 크기 확대 */
+    }
+  }
+  /* 전체 버튼 박스 */
+.buttonbox {
+    @apply flex flex-col items-center gap-4 w-full max-w-lg mx-auto mt-8; /* 가로 중앙 정렬 및 간격 */
+  margin-bottom: calc(50px)
+}
+  
+  /* 수정하기 / 저장하기 버튼 */
+  .setbutton {
+    @apply w-full text-black font-bold text-center py-3 rounded-full cursor-pointer; /* 버튼 스타일 */
+    transition: background-color 0.3s ease;
+    background-color: #DAE000;
+  }
+  
+  .setbutton:hover {
+    @apply bg-yellow-500; /* 호버 시 배경색 변경 */
+  }
+  
+  /* 로그아웃 / 회원탈퇴 컨테이너 */
+  .andbox {
+    @apply flex justify-around w-full text-gray-600; /* 버튼 간 간격 */
+  }
+  
+  /* 로그아웃 / 회원탈퇴 버튼 */
+  .logout,
+  .out {
+    @apply text-sm cursor-pointer; /* 텍스트 스타일 */
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .buttonbox {
+      @apply gap-3 mt-6; /* 작은 화면에서 간격 축소 */
+    }
+  
+    .setbutton {
+      @apply py-2 text-sm; /* 작은 화면에서 버튼 크기 축소 */
+    }
+  
+    .logout,
+    .out {
+      @apply text-xs; /* 텍스트 크기 축소 */
+    }
+  }
+  

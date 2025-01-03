@@ -6,12 +6,12 @@ import { useParams } from "react-router-dom";
 import SearchCategory from "../../components/common/SearchCategory/SearchCategory.tsx";
 import Categoryitems from "./Categoryitems.tsx";
 import DeliveryType from "./Deliverytype.tsx"
+import Back from "./Back.tsx";
 const Categoryitem = ({ prob }) => {
-  const cate = "카테고리 > ";
   return (
     <div className={styles.Category}>
       <div className={styles.Categorybox}>
-        {cate}
+        
         {prob} {/* 객체의 값을 렌더링 */}
       </div>
     </div>
@@ -25,7 +25,10 @@ const Hcategory = () => {
   return (
     <>
       <Topbar />
+      <Back prob="카테고리"/>
+
       <Categoryitem prob={name} /> {/* prob에 name 값 전달 */}
+
       <DeliveryType />
       <SearchCategory/>
       <Categoryitems/>

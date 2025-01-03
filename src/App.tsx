@@ -9,6 +9,8 @@ import Profile from './pages/Home-Profile/Profile.tsx';
 import Hcategory from './pages/Home-category/Hcategory.tsx';
 import SearchWindow from './pages/Home-searchwindow/SearchWindow.tsx';
 import SearchResult from './pages/Home-Search-Searchresult/Searchresult.tsx';
+import Setting from './pages/Home-profile-setting/Setting.tsx';
+import Expense from './pages/Home-profile-expense/Expense.tsx';
 
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
@@ -61,6 +63,11 @@ const AnimatedRoutes = () => {
             <Home />
           </PageTransition>
         } />
+        <Route path="/Profile" element={
+          <PageTransition isSlide={false}>
+            <Profile />
+          </PageTransition>
+        } />
         <Route path="/Hcategory/:name" element={
           <PageTransition isSlide={false}>
             <Hcategory />
@@ -74,6 +81,16 @@ const AnimatedRoutes = () => {
          <Route path="/result" element={
           <PageTransition isSlide={false}>
             <SearchResult />
+          </PageTransition>
+        } />
+        <Route path="/setting" element={
+          <PageTransition isSlide={false}>
+            <Setting />
+          </PageTransition>
+        } />
+        <Route path="/profile/:number" element={
+          <PageTransition isSlide={false}>
+            <Expense />
           </PageTransition>
         } />
       </Routes>
