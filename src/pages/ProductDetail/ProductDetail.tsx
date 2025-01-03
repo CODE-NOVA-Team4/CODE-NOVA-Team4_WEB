@@ -94,7 +94,7 @@ const ProductDetail = () => {
                 // 판매자인 경우
                 <button 
                   className={styles.mainButton}
-                  onClick={() => navigate('/edit-product')}
+                  onClick={() => navigate(`/edit-product/${product.id}`)}
                 >
                   수정하기
                 </button>

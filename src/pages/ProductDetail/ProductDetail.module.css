@@ -127,10 +127,6 @@
   transition: background-color 0.2s;
 }
 
-.mainButton:hover {
-  background: #025132;
-}
-
 .likeButton {
   width: 55px;
   height: 55px;

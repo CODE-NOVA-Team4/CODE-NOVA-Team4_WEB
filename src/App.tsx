@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Splash from './pages/Splash/Splash.tsx';
 import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
 import Signup from './pages/Signup/Signup.tsx';
-import CreateProduct from './pages/CreateProduct/CreateProduct.tsx';
+import ProductForm from './pages/CreateProduct/ProductForm.tsx';
 import ChatList from './pages/ChatList/ChatList.tsx';
 import ChatRoom from './pages/ChatRoom/ChatRoom.tsx';
 import ProductDetail from './pages/ProductDetail/ProductDetail.tsx';
@@ -42,6 +42,16 @@ const PageTransition = ({ children, isSlide = false }: { children: React.ReactNo
     >
       {children}
     </motion.div>
+  );
+};
+
+// EditProductWrapper component to handle route params
+const EditProductWrapper = () => {
+  const { id } = useParams();
+  return (
+    <PageTransition isSlide={false}>
+      <ProductForm mode="edit" productId={id} />
+    </PageTransition>
   );
 };
 
@@ -87,9 +97,13 @@ const AnimatedRoutes = () => {
           path="/create-product"
           element={
             <PageTransition isSlide={false}>
-              <CreateProduct />
+              <ProductForm mode="create" />
             </PageTransition>
           }
+        />
+        <Route
+          path="/edit-product/:id"
+          element={<EditProductWrapper />}
         />
         <Route
           path="/chats"

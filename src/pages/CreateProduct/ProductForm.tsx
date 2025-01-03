@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './CreateProduct.module.css';
 import backgreenArrow from '../../assets/images/arrow-green.svg';
 import CategoryModal from '../../components/CategoryModal/CategoryModal.tsx';
 import { Category } from '../../types/category.ts';
 
-interface ProductForm {
+interface ProductFormData {
   images: File[];
+  existingImages: string[];
   categories: Category[];
   name: string;
   description: string;
@@ -14,17 +15,44 @@ interface ProductForm {
   tradeType: 'meet' | 'delivery' | '';
 }
 
-const CreateProduct = () => {
+interface ProductFormProps {
+  mode: 'create' | 'edit';
+  productId?: string;
+}
+
+const ProductForm: React.FC<ProductFormProps> = ({ mode, productId }) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState<ProductForm>({
+  const [formData, setFormData] = useState<ProductFormData>({
     images: [],
+    existingImages: [],
     categories: [],
     name: '',
     description: '',
     price: '',
     tradeType: '',
   });
+
+  useEffect(() => {
+    if (mode === 'edit' && productId) {
+      const savedProduct = localStorage.getItem(`product_${productId}`);
+      if (savedProduct) {
+        const productData = JSON.parse(savedProduct);
+        setFormData({
+          images: [],
+          existingImages: productData.images,
+          categories: productData.categories.map((name: string) => ({
+            id: name.toLowerCase().replace(/\s/g, ''),
+            name
+          })),
+          name: productData.name,
+          description: productData.description,
+          price: productData.price.toString(),
+          tradeType: productData.tradeType,
+        });
+      }
+    }
+  }, [mode, productId]);
 
   const handleCategorySelect = (category: Category) => {
     setFormData(prev => {
@@ -51,7 +79,8 @@ const CreateProduct = () => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newImages = Array.from(e.target.files);
-      if (newImages.length + formData.images.length <= 5) {
+      const totalImages = formData.images.length + formData.existingImages.length;
+      if (newImages.length + totalImages <= 5) {
         setFormData(prev => ({
           ...prev,
           images: [...prev.images, ...newImages]
@@ -62,11 +91,17 @@ const CreateProduct = () => {
     }
   };
 
-  // 이미지 삭제 함수 추가
   const handleImageDelete = (index: number) => {
     setFormData(prev => ({
       ...prev,
       images: prev.images.filter((_, idx) => idx !== index)
+    }));
+  };
+
+  const handleExistingImageDelete = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      existingImages: prev.existingImages.filter((_, idx) => idx !== index)
     }));
   };
 
@@ -86,8 +121,9 @@ const CreateProduct = () => {
   };
 
   const isFormValid = () => {
+    const totalImages = formData.images.length + formData.existingImages.length;
     return (
-      formData.images.length > 0 &&
+      totalImages > 0 &&
       formData.categories.length > 0 &&
       formData.name &&
       formData.description &&
@@ -96,75 +132,85 @@ const CreateProduct = () => {
     );
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (!isFormValid()) return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isFormValid()) return;
 
-  // File 객체를 URL로 변환
-  const imageUrls = formData.images.map(file => URL.createObjectURL(file));
+    const newImageUrls = formData.images.map(file => URL.createObjectURL(file));
+    const allImageUrls = [...formData.existingImages, ...newImageUrls];
 
-  // 저장할 상품 데이터 구성
-  const productData = {
-    id: Date.now().toString(), // 임시 ID 생성
-    images: imageUrls,
-    categories: formData.categories.map(cat => cat.name), // Category 객체에서 name만 추출
-    name: formData.name,
-    description: formData.description,
-    price: parseInt(formData.price),
-    tradeType: formData.tradeType,
-    sellerId: 'user123' // 임시 사용자 ID
+    const productData = {
+      id: mode === 'edit' ? productId : Date.now().toString(),
+      images: allImageUrls,
+      categories: formData.categories.map(cat => cat.name),
+      name: formData.name,
+      description: formData.description,
+      price: parseInt(formData.price),
+      tradeType: formData.tradeType,
+      sellerId: 'user123'
+    };
+
+    localStorage.setItem(`product_${productData.id}`, JSON.stringify(productData));
+    navigate(`/product/${productData.id}`);
   };
-
-  // localStorage에 저장
-  localStorage.setItem(`product_${productData.id}`, JSON.stringify(productData));
-
-  // 상세 페이지로 이동
-  navigate(`/product/${productData.id}`);
-};
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-              <button 
-                onClick={() => navigate(-1)} 
-                className={styles.backButton}
-              >
-              <img src={backgreenArrow} alt="back" />
-              </button>
-              <span className={styles.headerspan}>상품 등록하기</span>
-            </div>
+        <button 
+          onClick={() => navigate(-1)} 
+          className={styles.backButton}
+        >
+          <img src={backgreenArrow} alt="back" />
+        </button>
+        <span className={styles.headerspan}>
+          {mode === 'create' ? '상품 등록하기' : '상품 수정하기'}
+        </span>
+      </div>
       <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.imageUpload}>
-        <input
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={handleImageUpload}
-        id="imageUpload"
-        hidden
-        />
-        <label htmlFor="imageUpload" className={styles.imageUploadLabel}>
-        <div className={styles.uploadIcon}>+</div>
-        <p>최대 5장의 사진을 첨부해주세요</p>
-        </label>
-        <div className={styles.imagePreview}>
-        {formData.images.map((img, idx) => (
-            <div key={idx} className={styles.imageWrapper}>
-            <img
-                src={URL.createObjectURL(img)}
-                alt={`preview ${idx}`}
-            />
-            <button
-                type="button"
-                onClick={() => handleImageDelete(idx)}
-                className={styles.deleteButton}
-            >
-                ×
-            </button>
-            </div>
-        ))}
+        <div className={styles.imageUpload}>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleImageUpload}
+            id="imageUpload"
+            hidden
+          />
+          <label htmlFor="imageUpload" className={styles.imageUploadLabel}>
+            <div className={styles.uploadIcon}>+</div>
+            <p>최대 5장의 사진을 첨부해주세요</p>
+          </label>
+          <div className={styles.imagePreview}>
+            {formData.existingImages.map((imgUrl, idx) => (
+              <div key={`existing-${idx}`} className={styles.imageWrapper}>
+                <img src={imgUrl} alt={`existing preview ${idx}`} />
+                <button
+                  type="button"
+                  onClick={() => handleExistingImageDelete(idx)}
+                  className={styles.deleteButton}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+            {formData.images.map((img, idx) => (
+              <div key={`new-${idx}`} className={styles.imageWrapper}>
+                <img
+                  src={URL.createObjectURL(img)}
+                  alt={`new preview ${idx}`}
+                />
+                <button
+                  type="button"
+                  onClick={() => handleImageDelete(idx)}
+                  className={styles.deleteButton}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
-    </div>
 
         <div className={styles.inputGroup}>
           <label>카테고리</label>
@@ -242,11 +288,11 @@ const handleSubmit = async (e: React.FormEvent) => {
           className={styles.submitButton}
           disabled={!isFormValid()}
         >
-          물품 등록하기
+          {mode === 'create' ? '물품 등록하기' : '수정 완료'}
         </button>
       </form>
     </div>
   );
 };
 
-export default CreateProduct;
+export default ProductForm;
