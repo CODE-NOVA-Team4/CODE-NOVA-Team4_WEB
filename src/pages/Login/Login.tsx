@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
-import logo from '../../assets/images/KUITSO-logo.svg';
 import backwhiteArrow from '../../assets/images/arrow-white.svg';
+import logogreen from '../../assets/images/logo-korean-green.svg'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,17 +17,19 @@ const Login = () => {
         </button> 
       <div className={styles.content}>
         <div className={styles.logo}>
-         <img src={logo} alt="KUITSO" />
+          <img src={logogreen} alt="KUITSO" />
+          <span className={styles.description}>
+            건국대 학생을 위한 쉽고 안전한 중고거래
+          </span>
         </div>
-        <p className={styles.description}>
-            KU 학생 인증으로 더 안전하게 거래하세요.
-        </p>
         <form className={styles.form}>
+          <span className={styles.inputstyle}>학교 이메일</span>
           <input
             type="email"
             placeholder="건국대학교 이메일"
             className={styles.input}
           />
+          <span className={styles.inputstyle}>비밀번호</span>
           <input
             type="password"
             placeholder="비밀번호"
