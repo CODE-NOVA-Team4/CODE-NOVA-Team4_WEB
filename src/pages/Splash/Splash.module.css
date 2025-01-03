@@ -1,4 +1,11 @@
-@import url(https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=IBM+Plex+Sans+KR&family=Jua&family=Noto+Sans+KR:wght@100..900&family=Poor+Story&display=swap);
+/* @import url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210@1.0/Tenada.woff2"); */
+@font-face {
+  font-family: "Tenada";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210@1.0/Tenada.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 
 .container {
   min-height: 100vh;
@@ -6,12 +13,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #036b3f 0%, #21ba45 100%);
+  background: #121212;
   position: relative;
   overflow: hidden;
 }
 
-.starry-bg {
+/* .starry-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,7 +34,7 @@
   height: 2px;
   opacity: 0.3;
   animation: twinkle 2s infinite;
-}
+} */
 
 .logo {
   display: flex;
@@ -44,10 +51,10 @@
 }
 
 .logo span {
-  color: white;
+  color: #dae000;
   font-size: 1.5rem;
-  font-family: "Bagel Fat One", serif;
-  font-weight: 400;
+  font-family: "Tenada", sans-serif;
+  font-weight: normal;
   font-style: normal;
 }
 

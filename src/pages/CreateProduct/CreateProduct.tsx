@@ -96,11 +96,31 @@ const CreateProduct = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // API 호출 로직 구현
-    console.log('Submit:', formData);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!isFormValid()) return;
+
+  // File 객체를 URL로 변환
+  const imageUrls = formData.images.map(file => URL.createObjectURL(file));
+
+  // 저장할 상품 데이터 구성
+  const productData = {
+    id: Date.now().toString(), // 임시 ID 생성
+    images: imageUrls,
+    categories: formData.categories.map(cat => cat.name), // Category 객체에서 name만 추출
+    name: formData.name,
+    description: formData.description,
+    price: parseInt(formData.price),
+    tradeMethod: formData.tradeMethod,
+    sellerId: 'user123' // 임시 사용자 ID
   };
+
+  // localStorage에 저장
+  localStorage.setItem(`product_${productData.id}`, JSON.stringify(productData));
+
+  // 상세 페이지로 이동
+  navigate(`/product/${productData.id}`);
+};
 
   return (
     <div className={styles.container}>
