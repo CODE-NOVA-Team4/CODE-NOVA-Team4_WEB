@@ -7,6 +7,9 @@ import Login from './pages/Login/Login.tsx';
 import Home from './pages/Home/Home.tsx';
 import Profile from './pages/Home-Profile/Profile.tsx';
 import Hcategory from './pages/Home-category/Hcategory.tsx';
+import SearchWindow from './pages/Home-searchwindow/SearchWindow.tsx';
+import SearchResult from './pages/Home-Search-Searchresult/Searchresult.tsx';
+
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
     initial: { x: '100%' },
@@ -61,6 +64,16 @@ const AnimatedRoutes = () => {
         <Route path="/Hcategory/:name" element={
           <PageTransition isSlide={false}>
             <Hcategory />
+          </PageTransition>
+        } />
+        <Route path="/Search" element={
+          <PageTransition isSlide={false}>
+            <SearchWindow />
+          </PageTransition>
+        } />
+         <Route path="/result" element={
+          <PageTransition isSlide={false}>
+            <SearchResult />
           </PageTransition>
         } />
       </Routes>

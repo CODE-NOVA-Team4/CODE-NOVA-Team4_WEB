@@ -71,7 +71,7 @@
   
   /* 원형 배경 */
   .fakecircle {
-    @apply w-full h-full bg-gray-400 rounded-full;
+    @apply w-full h-full rounded-full;
   }
   
   /* 타입 이름 */
