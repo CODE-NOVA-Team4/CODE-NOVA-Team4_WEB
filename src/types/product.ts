@@ -1,3 +1,4 @@
+import { Category } from './category';
 export interface Product {
     id: string;
     images: string[];
