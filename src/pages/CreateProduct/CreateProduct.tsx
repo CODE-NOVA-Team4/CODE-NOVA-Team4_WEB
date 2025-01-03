@@ -11,7 +11,7 @@ interface ProductForm {
   name: string;
   description: string;
   price: string;
-  tradeMethod: 'direct' | 'delivery' | '';
+  tradeType: 'meet' | 'delivery' | '';
 }
 
 const CreateProduct = () => {
@@ -23,7 +23,7 @@ const CreateProduct = () => {
     name: '',
     description: '',
     price: '',
-    tradeMethod: '',
+    tradeType: '',
   });
 
   const handleCategorySelect = (category: Category) => {
@@ -78,10 +78,10 @@ const CreateProduct = () => {
     }));
   };
 
-  const handleTradeMethodChange = (method: 'direct' | 'delivery') => {
+  const handleTradeTypeChange = (method: 'meet' | 'delivery') => {
     setFormData(prev => ({
       ...prev,
-      tradeMethod: method
+      tradeType: method
     }));
   };
 
@@ -92,7 +92,7 @@ const CreateProduct = () => {
       formData.name &&
       formData.description &&
       formData.price &&
-      formData.tradeMethod
+      formData.tradeType
     );
   };
 
@@ -111,7 +111,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     name: formData.name,
     description: formData.description,
     price: parseInt(formData.price),
-    tradeMethod: formData.tradeMethod,
+    tradeType: formData.tradeType,
     sellerId: 'user123' // 임시 사용자 ID
   };
 
@@ -218,15 +218,15 @@ const handleSubmit = async (e: React.FormEvent) => {
           <div className={styles.tradeButtons}>
             <button
               type="button"
-              className={`${styles.tradeButton} ${formData.tradeMethod === 'direct' ? styles.active : ''}`}
-              onClick={() => handleTradeMethodChange('direct')}
+              className={`${styles.tradeButton} ${formData.tradeType === 'meet' ? styles.active : ''}`}
+              onClick={() => handleTradeTypeChange('meet')}
             >
               직거래
             </button>
             <button
               type="button"
-              className={`${styles.tradeButton} ${formData.tradeMethod === 'delivery' ? styles.active : ''}`}
-              onClick={() => handleTradeMethodChange('delivery')}
+              className={`${styles.tradeButton} ${formData.tradeType === 'delivery' ? styles.active : ''}`}
+              onClick={() => handleTradeTypeChange('delivery')}
             >
               택배
             </button>

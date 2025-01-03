@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Splash.module.css';
 import logo from '../../assets/images/KUITSO-logo.svg';
+import logospan from '../../assets/images/logo-span.svg';
 
 const Splash = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const Splash = () => {
     <div className={styles.container}>
       <div className={styles.logo}>
         <img src={logo} alt="KUITSO" />
-        <span>쿠잇소</span>
+        <img className={styles.logospan} src={logospan} alt="KUITSOspan" />
       </div>
     </div>
   );
