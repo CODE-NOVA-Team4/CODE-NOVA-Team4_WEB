@@ -124,10 +124,15 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   return (
     <div className={styles.container}>
-      <button onClick={() => navigate(-1)} className={styles.backButton}>
-        <img src={backgreenArrow} alt="back" />
-      </button>
-      <div className={styles.header}>상품 등록하기</div>
+      <div className={styles.header}>
+              <button 
+                onClick={() => navigate(-1)} 
+                className={styles.backButton}
+              >
+              <img src={backgreenArrow} alt="back" />
+              </button>
+              <span className={styles.headerspan}>상품 등록하기</span>
+            </div>
       <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.imageUpload}>
         <input
@@ -140,8 +145,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         />
         <label htmlFor="imageUpload" className={styles.imageUploadLabel}>
         <div className={styles.uploadIcon}>+</div>
-        <p>최대 5장의 사진을 추가해주세요.</p>
-        <p className={styles.imageCount}>{formData.images.length}/5</p>
+        <p>최대 5장의 사진을 첨부해주세요</p>
         </label>
         <div className={styles.imagePreview}>
         {formData.images.map((img, idx) => (

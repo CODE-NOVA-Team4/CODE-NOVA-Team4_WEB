@@ -14,51 +14,11 @@
 .modalContent {
   background: white;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: 16px;
   width: 90%;
   max-width: 500px;
-}
-
-.modalContent h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  color: #666;
-  font-size: 0.875rem;
-  margin-bottom: 1.5rem;
-}
-
-.categoryList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 0.75rem;
-}
-
-.categoryItem {
-  padding: 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.categoryItem:hover {
-  border-color: #036b3f;
-}
-
-.categoryItem.selected {
-  background: #036b3f;
-  color: white;
-  border-color: #036b3f;
-}
-
-.categoryItem:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modalHeader {
@@ -66,6 +26,59 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
+}
+
+.modalHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.subtitle {
+  color: #666666;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.categoryItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.categoryIcon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dae000;
+  border-radius: 50%;
+}
+
+.categoryIcon img {
+  width: 70px;
+  height: 70px;
+}
+
+.categoryName {
+  font-size: 0.875rem;
+  text-align: center;
+  color: #000000;
 }
 
 .closeButton {
@@ -76,9 +89,6 @@
   cursor: pointer;
   padding: 0.5rem;
   line-height: 1;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +96,30 @@
 }
 
 .closeButton:hover {
-  background-color: rgba(0, 0, 0, 0.05);
   color: #333;
+}
+
+.categoryItem.selected .categoryIcon {
+  background: #c4c900;
+}
+
+.categoryItem:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .categoryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .categoryIcon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .categoryIcon img {
+    width: 50px;
+    height: 50px;
+  }
 }

@@ -27,19 +27,23 @@ const CategoryModal = ({
             </button>
           </div>
           <p className={styles.subtitle}>최대 2개까지 선택 가능합니다</p>
-          <div className={styles.categoryList}>
-            {CATEGORIES.map(category => (
-              <button
-                key={category.id}
-                className={`${styles.categoryItem} ${
-                  selectedCategories.some(c => c.id === category.id) ? styles.selected : ''
-                }`}
-                onClick={() => onSelectCategory(category)}
-                disabled={selectedCategories.length >= 2 && !selectedCategories.some(c => c.id === category.id)}
-              >
-                {category.name}
-              </button>
-            ))}
+          <div className={styles.categoryGrid}>
+            {CATEGORIES.map(category => {
+              const isSelected = selectedCategories.some(c => c.id === category.id);
+              return (
+                <button
+                  key={category.id}
+                  className={`${styles.categoryItem} ${isSelected ? styles.selected : ''}`}
+                  onClick={() => onSelectCategory(category)}
+                  disabled={selectedCategories.length >= 2 && !isSelected}
+                >
+                  <div className={styles.categoryIcon}>
+                    <img src={category.icon} alt={category.name} />
+                  </div>
+                  <span className={styles.categoryName}>{category.name}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
