@@ -1,0 +1,157 @@
+/* 카테고리 컨테이너 */
+.Category {
+    @apply flex items-center justify-start w-full px-4 py-2 bg-white;
+    padding-top: calc(20px); 
+
+}
+  
+  /* 카테고리 박스 */
+  .Categorybox {
+    @apply text-lg font-bold text-gray-800;
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .Categorybox {
+      @apply text-base; /* 작은 화면에서는 글씨 크기 축소 */
+    }
+  }
+  
+
+/* 버튼 컨테이너 */
+.toggleContainer {
+    @apply flex gap-4 items-center justify-start w-full;
+    margin-top: 8px;
+    margin-left: 10px; /* 카테고리와 버튼 간 여백 추가 */
+  }
+  
+  /* 기본 버튼 스타일 */
+  .button {
+    @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300;
+    background-color: white;
+    transition: background-color 0.3s, color 0.3s, font-size 0.3s, padding 0.3s;
+    cursor: pointer;
+    font-size: 1rem; /* 기본 글씨 크기 */
+  }
+  
+  /* 활성화된 버튼 스타일 */
+  .active {
+    @apply bg-gray-300 text-white border-gray-400;
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .button {
+      @apply px-3 py-2 text-sm; /* 작을 때 버튼 크기 줄임 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .button {
+      @apply px-6 py-3 text-lg; /* 클 때 버튼 크기 키움 */
+    }
+  }
+  /* --------------------------------- */
+  /* 전체 컨테이너 */
+/* 전체 컨테이너 */
+.categoryitemsbox {
+    @apply flex flex-col gap-4 w-full p-4;
+     /* 세로 정렬 및 간격 추가 */
+     padding-bottom: calc(100px); 
+
+  }
+  
+  /* 각 아이템 박스 */
+  .itembox {
+    @apply flex items-center w-full bg-gray-100 p-4 rounded-md gap-4;
+  }
+  
+  /* 원형 이미지 컨테이너 */
+  .circle {
+    @apply w-16 h-16 bg-gray-300 rounded-full flex-shrink-0;
+  }
+  
+  /* 정보 영역 */
+  .information {
+    @apply flex flex-col w-full gap-1; /* 이름, 가격, 시간 간 간격 추가 */
+  }
+  
+  /* 이름 */
+  .typename {
+    @apply text-sm font-bold text-gray-800;
+    line-height: 1.2; /* 줄 간격 조정 */
+  }
+  
+  /* 가격 */
+  .price {
+    @apply text-lg font-bold text-gray-900 mt-1; /* 이름 아래 여백 추가 */
+  }
+  
+  /* 시간과 하트 컨테이너 */
+  .metadata {
+    @apply flex items-center justify-between mt-2; /* 시간과 하트를 양쪽 정렬 */
+  }
+  
+  /* 시간 */
+  .time {
+    @apply text-xs text-gray-500;
+  }
+  
+  /* 하트 */
+  .heart {
+    @apply flex items-center text-xs text-gray-500 gap-1;
+  }
+  
+
+/* 전체 컨테이너 */
+.backbox {
+    @apply flex items-center gap-2 px-4 py-2; /* 좌우 간격과 패딩 */
+    @apply w-full max-w-2xl   justify-start; /* 왼쪽 정렬 */
+    /* 너비 제한 */
+    margin-top: 60px; /* 위쪽 마진 50px */
+  }
+  
+  /* 뒤로가기 아이콘 */
+  .back {
+    @apply w-6 h-6 cursor-pointer; /* 기본 크기와 클릭 가능 스타일 */
+    transition: transform 0.2s ease; /* 클릭 시 애니메이션 */
+  }
+  
+  .back:hover {
+    @apply scale-110; /* 호버 시 크기 증가 */
+  }
+  
+  /* 카테고리 제목 */
+  .backtitle {
+    @apply text-lg font-bold text-gray-800; /* 기본 텍스트 스타일 */
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .backbox {
+      @apply px-2 py-1; /* 작은 화면에서는 패딩 축소 */
+    }
+  
+    .back {
+      @apply w-5 h-5; /* 작은 화면에서 아이콘 크기 축소 */
+    }
+  
+    .backtitle {
+      @apply text-base; /* 작은 화면에서 글씨 크기 축소 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .backbox {
+      @apply px-6 py-3; /* 데스크톱 화면에서는 패딩 확장 */
+    }
+  
+    .back {
+      @apply w-8 h-8; /* 데스크톱 화면에서 아이콘 크기 확대 */
+    }
+  
+    .backtitle {
+      @apply text-xl; /* 데스크톱 화면에서 글씨 크기 확대 */
+    }
+  }
+  

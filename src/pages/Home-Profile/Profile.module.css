@@ -1,0 +1,142 @@
+/* 프로필 제목 컨테이너 */
+.profiletitle {
+    @apply flex justify-center items-center w-full px-4 py-2 border-b border-gray-300 bg-white shadow-md;
+    padding-top: calc(50px);
+    position: relative;
+
+  }
+  
+  /* 프로필 박스 */
+  .profilebox {
+    @apply flex items-center gap-4;
+  }
+  
+  /* 프로필 이미지 (원형) */
+  .circle {
+    @apply w-12 h-12 bg-gray-300 rounded-full relative flex items-center justify-center overflow-hidden;
+    position: relative;
+  }
+  
+  /* 배지
+  .circle::after {
+    @apply absolute bottom-0 right-0 text-xs font-bold text-white bg-pink-500 rounded-full w-5 h-5 flex items-center justify-center;
+    content: "15";
+  } */
+  
+  /* 이름 텍스트 */
+  .name {
+    @apply text-base font-bold text-gray-800;
+  }
+  
+  /* 학과명 텍스트 */
+  .subject {
+    @apply text-sm text-gray-600;
+  }
+  
+  /* 설정 아이콘 */
+  .setting {
+    @apply w-6 h-6 text-gray-600 cursor-pointer;
+  }
+  
+  /* 프로필 컨텐츠 */
+ 
+
+
+
+/* 전체 컨테이너 */
+.profilecontent {
+  @apply w-full max-w-2xl mx-auto flex flex-col gap-4; /* 가로 중앙 정렬 및 갭 설정 */
+  margin-top: 50px;
+
+}
+
+/* 제목 영역 */
+.contenttitle {
+  @apply flex justify-between items-center px-4; /* 제목과 "더보기" 정렬 */
+}
+
+.expense {
+  @apply text-xl font-bold text-gray-800; /* 제목 스타일 */
+}
+
+.expenseplus {
+  @apply text-sm text-blue-500 cursor-pointer; /* "더보기" 스타일 */
+}
+
+/* 콘텐츠 영역 */
+.contentcontent {
+  @apply flex gap-6 px-4 overflow-x-auto; /* 가로 스크롤 활성화 */
+  scroll-snap-type: x mandatory; /* 스크롤 스냅 활성화 */
+  -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
+  margin-bottom: calc(100px)
+}
+.contentcontentVertical {
+  @apply grid gap-6 px-4; /* Grid 레이아웃과 간격 설정 */
+  grid-template-columns: repeat(2, 1fr); /* 데스크톱 화면에서는 세 열 */
+  margin-bottom: calc(100px)
+
+}
+
+/* 개별 콘텐츠 아이템 */
+.contentitem {
+  @apply flex flex-col items-center bg-gray-100 rounded-lg shadow p-4 flex-shrink-0; /* 카드 스타일 */
+  width: 200px; /* 각 아이템 너비 고정 */
+  scroll-snap-align: center; /* 스크롤 스냅 정렬 */
+}
+
+.contentitemimg {
+  @apply w-full h-32 bg-gray-300 rounded-lg object-cover; /* 이미지 스타일 */
+}
+
+.itemname {
+  @apply text-base font-medium text-gray-800 mt-2; /* 이름 스타일 */
+}
+
+.itemday {
+  @apply text-sm text-gray-500; /* 날짜 스타일 */
+}
+
+.itemprice {
+  @apply text-base font-bold text-gray-800; /* 가격 스타일 */
+}
+
+/* 반응형 설정 */
+@media (max-width: 768px) {
+  .contentcontent {
+    overflow-x: auto; /* 모바일 화면에서도 가로 스크롤 활성화 */
+  }
+
+  .expense {
+    @apply text-lg; /* 제목 크기 축소 */
+  }
+
+  .expenseplus {
+    @apply text-xs; /* "더보기" 크기 축소 */
+  }
+  .contentcontentVertical {
+    grid-template-columns: 1fr 1fr; /* 태블릿 화면에서는 두 열 */
+  }
+  .contentitemimg {
+    @apply h-28; /* 이미지 높이 축소 */
+  }
+
+  .itemname {
+    @apply text-sm; /* 이름 크기 축소 */
+  }
+
+  .itemprice {
+    @apply text-sm; /* 가격 크기 축소 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .contentcontent {
+    overflow-x: auto; /* 데스크톱 화면에서도 가로 스크롤 활성화 */
+  }
+  .contentcontentVertical {
+    grid-template-columns: repeat(3, 1fr); /* 데스크톱 화면에서는 세 열 */
+  }
+  .contentitemimg {
+    @apply h-40; /* 이미지 높이 확장 */
+  }
+}

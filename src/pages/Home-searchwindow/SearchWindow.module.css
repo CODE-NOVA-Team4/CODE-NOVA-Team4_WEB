@@ -1,0 +1,65 @@
+/* 전체 컨테이너 */
+.recentsearch {
+    @apply w-full max-w-4xl bg-white rounded-lg  flex flex-col;
+    height: 80vh; /* 전체 높이의 80%를 차지 */
+    max-height: 500px; /* 최대 높이 제한 */
+    margin: auto; /* 가로/세로 중앙 정렬 */
+    overflow: hidden; /* 초과되는 내용 숨기기 */
+  }
+  
+  /* 상단 제목 영역 */
+  .top {
+    @apply flex justify-between items-center p-4 ;
+  }
+  
+  .title {
+    @apply text-lg font-bold text-gray-800;
+  }
+  
+  .delete {
+    @apply text-sm text-red-500 cursor-pointer;
+  }
+  
+  /* 검색어 리스트 영역 */
+  .content {
+    @apply flex flex-col gap-2 p-4 overflow-y-auto;
+    max-height: calc(100% - 60px); /* 제목 영역 제외 */
+  }
+  
+  /* 검색어 항목 */
+  .searchItem {
+    @apply flex justify-between items-center bg-gray-100 rounded-lg p-2;
+  }
+  
+  .searchText {
+    @apply text-sm text-gray-800 truncate; /* 긴 텍스트 줄임 표시 */
+  }
+  
+  /* 삭제 버튼 */
+  .deleteButton {
+    @apply text-sm text-red-500 cursor-pointer;
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .recentsearch {
+      @apply max-w-sm; /* 작은 화면에서 너비 축소 */
+      height: 70vh; /* 작은 화면에서 높이 조정 */
+    }
+  
+    .title {
+      @apply text-base; /* 제목 크기 축소 */
+    }
+  
+    .delete {
+      @apply text-xs; /* "전체 삭제" 버튼 크기 축소 */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .recentsearch {
+      @apply max-w-xs; /* 매우 작은 화면에서 너비 축소 */
+      height: 60vh; /* 매우 작은 화면에서 높이 조정 */
+    }
+  }
+  

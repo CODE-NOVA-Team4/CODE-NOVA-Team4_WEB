@@ -1,0 +1,20 @@
+
+.searchresultcontent {
+    @apply inline-flex justify-center items-center gap-2 px-6 py-2; /* 기본 스타일 */
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .searchresultcontent {
+      @apply px-4 py-2; /* 작은 화면에서 패딩 축소 */
+      gap: 6px; /* 작은 화면에서 간격 축소 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .searchresultcontent {
+      @apply px-[238px] py-2; /* 데스크톱 화면에서 더 넓은 패딩 */
+      gap: 10px; /* 데스크톱 화면에서 기본 간격 */
+    }
+  }
+  

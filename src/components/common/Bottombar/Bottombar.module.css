@@ -1,0 +1,34 @@
+/* Bottombar.module.css */
+
+/* 전체 바 스타일 */
+.bottombar {
+    @apply flex flex-col items-center justify-between w-full h-20 bg-gray-100 border-t border-gray-300 fixed bottom-0 z-50;
+  }
+  
+  /* 상단 메뉴 섹션 */
+  .top {
+    @apply flex justify-around items-center w-full px-4 py-2;
+  }
+  
+  /* 각각의 메뉴 */
+  .menu {
+    @apply flex items-center justify-center w-16 h-16 rounded-full;
+  }
+  
+  /* 메뉴 아이콘 크기 */
+  .menu img {
+    @apply w-9 h-9;
+  }
+  
+  /* 하단 인디케이터 */
+  .indicator {
+    @apply flex justify-center items-center w-full relative -mt-2; /* 인디케이터를 위로 이동 */
+    position: relative; /* 부모 컨테이너와 독립적으로 조정 */
+    padding-bottom: 10px; /* 하단에서 약간 위로 올림 */
+
+  }
+  
+  .indicator img {
+    @apply w-24 h-2;
+  }
+  

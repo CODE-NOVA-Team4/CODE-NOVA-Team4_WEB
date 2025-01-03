@@ -1,0 +1,59 @@
+/* 부모 컨테이너 */
+.parentContainer {
+    @apply flex items-center justify-center w-full bg-white; /* 화면 중앙 정렬 */
+    margin: 50px 0;
+  }
+  
+  /* 검색 바 */
+  .searchBar {
+    @apply flex items-center px-4 py-2 bg-gray-200 rounded-full;
+    width: 70%; /* 브라우저 너비의 70% */
+    max-width: 1024px; /* 최대 너비 제한 */
+    height: 60px; /* 고정 높이 */
+    transition: all 0.3s ease;
+  }
+ 
+  .back {
+    @apply  cursor-pointer; /* 기본 크기와 클릭 가능 스타일 */
+    transition: transform 0.2s ease; /* 클릭 시 애니메이션 */
+    padding: 10px;
+
+}
+  
+  .back:hover {
+    @apply scale-110; /* 호버 시 크기 증가 */
+  }
+  
+  /* 검색 입력창 */
+  .searchInput {
+    @apply flex-1 text-gray-700 bg-transparent outline-none;
+    font-size: 1rem;
+  }
+  
+  /* 검색 버튼 (아이콘) */
+  .searchButton {
+    @apply w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center cursor-pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .searchButton:hover {
+    @apply bg-gray-400;
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .searchBar {
+      width: 90%; /* 모바일 화면에서는 너비를 90%로 조정 */
+      height: 50px; /* 높이 축소 */
+      @apply px-3 py-2; /* 내부 여백 축소 */
+    }
+  
+    .searchInput {
+      font-size: 0.9rem; /* 글씨 크기 축소 */
+    }
+  
+    .searchButton {
+      @apply w-5 h-5; /* 검색 버튼 크기 축소 */
+    }
+  }
+  
