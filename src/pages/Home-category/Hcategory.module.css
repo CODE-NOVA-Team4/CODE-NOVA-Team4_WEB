@@ -1,56 +1,47 @@
-/* 카테고리 컨테이너 */
-.Category {
-    @apply flex items-center justify-start w-full px-4 py-2 bg-white;
-    padding-top: calc(20px); 
-
-}
-  
-  /* 카테고리 박스 */
-  .Categorybox {
-    @apply text-lg font-bold text-gray-800;
+/* 전체 컨테이너 */
+.container {
+    @apply flex gap-4 items-center overflow-x-auto px-4; /* 가로 스크롤 가능 */
   }
   
-  /* 반응형 설정 */
-  @media (max-width: 768px) {
-    .Categorybox {
-      @apply text-base; /* 작은 화면에서는 글씨 크기 축소 */
-    }
+  /* 직거래/택배 버튼 컨테이너 */
+  .toggleContainer {
+    @apply flex gap-2 flex-shrink-0; /* 버튼 간격 설정 */
   }
   
-
-/* 버튼 컨테이너 */
-.toggleContainer {
-    @apply flex gap-4 items-center justify-start w-full;
-    margin-top: 8px;
-    margin-left: 10px; /* 카테고리와 버튼 간 여백 추가 */
-  }
-  
-  /* 기본 버튼 스타일 */
+  /* 직거래/택배 버튼 */
   .button {
-    @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300;
-    background-color: white;
-    transition: background-color 0.3s, color 0.3s, font-size 0.3s, padding 0.3s;
+    @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300 bg-white;
+    transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 1rem; /* 기본 글씨 크기 */
   }
   
-  /* 활성화된 버튼 스타일 */
+
+  
   .active {
-    @apply bg-gray-300 text-white border-gray-400;
+    @apply bg-orange-400 text-white border-orange-500;
   }
   
-  /* 반응형 설정 */
-  @media (max-width: 768px) {
-    .button {
-      @apply px-3 py-2 text-sm; /* 작을 때 버튼 크기 줄임 */
-    }
+  /* 카테고리 버튼 컨테이너 */
+  .categoryContainer {
+    @apply flex gap-2 flex-shrink-0; /* 카테고리 버튼 정렬 */
   }
   
-  @media (min-width: 1024px) {
-    .button {
-      @apply px-6 py-3 text-lg; /* 클 때 버튼 크기 키움 */
-    }
+  /* 카테고리 버튼 */
+  .categoryButton {
+    @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300 bg-white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    scroll-snap-align: start; /* 스크롤 스냅 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
   }
+ 
+  
+  .activeCategory {
+    @apply text-white;
+    background-color: #DAE000; /* 커스텀 배경색 */
+
+  }
+  
   /* --------------------------------- */
   /* 전체 컨테이너 */
 /* 전체 컨테이너 */
@@ -152,6 +143,30 @@
   
     .backtitle {
       @apply text-xl; /* 데스크톱 화면에서 글씨 크기 확대 */
+    }
+  }
+  
+  /* 전체 컨테이너 */
+.Category {
+    @apply flex items-center justify-start w-full px-4 py-2 bg-white; /* 왼쪽 정렬 */
+     /* 위쪽 여백 */
+  }
+  
+  /* 카테고리 박스 */
+  .Categorybox {
+    @apply text-lg font-bold text-gray-800; /* 텍스트 스타일 */
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .Categorybox {
+      @apply text-base; /* 모바일 화면에서 글씨 크기 축소 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .Category {
+      @apply px-6; /* 데스크톱 화면에서 패딩 확대 */
     }
   }
   

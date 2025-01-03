@@ -29,7 +29,7 @@ const Hcategory = () => {
 
       <Categoryitem prob={name} /> {/* prob에 name 값 전달 */}
 
-      <DeliveryType />
+      <DeliveryType name={name}/>
       <SearchCategory/>
       <Categoryitems/>
       <Bottombar />

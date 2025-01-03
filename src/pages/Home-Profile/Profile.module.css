@@ -42,12 +42,10 @@
  
 
 
-
 /* 전체 컨테이너 */
 .profilecontent {
-  @apply w-full max-w-2xl mx-auto flex flex-col gap-4; /* 가로 중앙 정렬 및 갭 설정 */
+  @apply w-full max-w-4xl mx-auto flex flex-col gap-6; /* 중앙 정렬 및 간격 조정 */
   margin-top: 50px;
-
 }
 
 /* 제목 영역 */
@@ -65,31 +63,31 @@
 
 /* 콘텐츠 영역 */
 .contentcontent {
-  @apply flex gap-6 px-4 overflow-x-auto; /* 가로 스크롤 활성화 */
-  scroll-snap-type: x mandatory; /* 스크롤 스냅 활성화 */
-  -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
-  margin-bottom: calc(100px)
+  @apply grid gap-6 px-4; /* Grid 레이아웃과 간격 설정 */
+  grid-template-columns: repeat(3, 1fr); /* 데스크톱에서 세 열 */
 }
+
 .contentcontentVertical {
   @apply grid gap-6 px-4; /* Grid 레이아웃과 간격 설정 */
-  grid-template-columns: repeat(2, 1fr); /* 데스크톱 화면에서는 세 열 */
-  margin-bottom: calc(100px)
-
+  grid-template-columns: repeat(2, 1fr); /* 세로 방향 두 열 */
 }
 
 /* 개별 콘텐츠 아이템 */
 .contentitem {
-  @apply flex flex-col items-center bg-gray-100 rounded-lg shadow p-4 flex-shrink-0; /* 카드 스타일 */
-  width: 200px; /* 각 아이템 너비 고정 */
-  scroll-snap-align: center; /* 스크롤 스냅 정렬 */
+  @apply flex flex-col bg-transparent p-0; /* 카드 스타일: 배경색 및 테두리 제거 */
 }
 
 .contentitemimg {
-  @apply w-full h-32 bg-gray-300 rounded-lg object-cover; /* 이미지 스타일 */
+  @apply w-full h-64 bg-gray-300 rounded-lg object-cover mb-2; /* 이미지 스타일: 더 커진 이미지 */
 }
 
+/* 텍스트 스타일 */
 .itemname {
   @apply text-base font-medium text-gray-800 mt-2; /* 이름 스타일 */
+}
+
+.iteminfo {
+  @apply flex justify-between w-full mt-2; /* 한 줄에 배치 */
 }
 
 .itemday {
@@ -97,13 +95,13 @@
 }
 
 .itemprice {
-  @apply text-base font-bold text-gray-800; /* 가격 스타일 */
+  @apply text-sm font-bold text-gray-800; /* 가격 스타일 */
 }
 
 /* 반응형 설정 */
 @media (max-width: 768px) {
   .contentcontent {
-    overflow-x: auto; /* 모바일 화면에서도 가로 스크롤 활성화 */
+    grid-template-columns: repeat(2, 1fr); /* 모바일 화면에서는 두 열 */
   }
 
   .expense {
@@ -113,30 +111,26 @@
   .expenseplus {
     @apply text-xs; /* "더보기" 크기 축소 */
   }
-  .contentcontentVertical {
-    grid-template-columns: 1fr 1fr; /* 태블릿 화면에서는 두 열 */
-  }
+
   .contentitemimg {
-    @apply h-28; /* 이미지 높이 축소 */
+    @apply h-48; /* 모바일에서 이미지 크기 축소 */
   }
 
   .itemname {
     @apply text-sm; /* 이름 크기 축소 */
   }
 
-  .itemprice {
-    @apply text-sm; /* 가격 크기 축소 */
+  .iteminfo {
+    @apply text-xs; /* 모바일에서 날짜와 가격 크기 축소 */
   }
 }
 
 @media (min-width: 1024px) {
   .contentcontent {
-    overflow-x: auto; /* 데스크톱 화면에서도 가로 스크롤 활성화 */
+    grid-template-columns: repeat(4, 1fr); /* 데스크톱 화면에서 네 열 */
   }
-  .contentcontentVertical {
-    grid-template-columns: repeat(3, 1fr); /* 데스크톱 화면에서는 세 열 */
-  }
+
   .contentitemimg {
-    @apply h-40; /* 이미지 높이 확장 */
+    @apply h-80; /* 데스크톱에서 더 큰 이미지 */
   }
 }

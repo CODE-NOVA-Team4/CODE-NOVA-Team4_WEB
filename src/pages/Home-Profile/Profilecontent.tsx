@@ -28,16 +28,18 @@ const Profilecontent = ({name}) =>{
         <div className={styles.profilecontent}>
             <div className={styles.contenttitle}>
                 <div className={styles.expense}>{name}</div>
-                <div className={styles.expenseplus} onClick={handleClick}>더보기</div>
+                {!isVertical&&<div className={styles.expenseplus} onClick={handleClick}>더보기</div>}
             </div>
             <div className={isVertical ? styles.contentcontentVertical : styles.contentcontent}>
             {categories.map((item,index)=>(
-                    <div key={index} className={styles.contentitem}>
-                        <img src={item.src} alt={item.name} className={styles.contentitemimg}/>
-                        <div className={styles.itemname}>{item.name} </div>
-                        <div className={styles.itemday}>{item.day}일 전전</div>
-                        <div className={styles.itemprice}>{item.price}₩</div>
+                    <div className={styles.contentitem}>
+                    <img src={item.src} alt={item.name} className={styles.contentitemimg} />
+                    <div className={styles.itemname}>{item.name}</div>
+                    <div className={styles.iteminfo}>
+                      <div className={styles.itemday}>{item.day}일 전</div>
+                      <div className={styles.itemprice}>{item.price}₩</div>
                     </div>
+                  </div>
 
                 ))}
             </div>

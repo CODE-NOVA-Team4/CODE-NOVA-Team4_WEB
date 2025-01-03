@@ -97,85 +97,81 @@
   }
   /* recommmmmmmmmmmmmmmmmmmmmm */
 
-  /* 추천 목록 전체 컨테이너 */
-/* 추천 목록 전체 컨테이너 */
+/* 전체 컨테이너 */
 .recom {
-    @apply flex flex-col items-center w-full max-w-6xl mx-auto px-4 py-4;
+    @apply w-full max-w-4xl mx-auto flex flex-col gap-6; /* 중앙 정렬 및 간격 조정 */
+    margin-top: 50px;
   }
   
-  /* 추천 목록 제목 */
+  /* 제목 영역 */
   .recomtitle {
-    @apply text-lg font-bold text-gray-800 mb-4;
+    @apply text-xl font-bold text-gray-800 px-4; /* 제목 스타일 */
+    margin-bottom: 16px; /* 제목과 콘텐츠 간격 */
   }
   
-  /* 추천 목록 내용 컨테이너 */
+  /* 콘텐츠 영역 */
   .recomcontent {
-    @apply grid gap-4 w-full;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 반응형으로 열 조정 */
-  padding-bottom: calc(80px); 
-}
-  
-  /* 개별 추천 아이템 박스 */
-  .recomitembox {
-    @apply flex flex-col bg-gray-200 rounded-lg shadow-md p-3 w-full;
-  }
-  
-  /* 추천 아이템 이미지 */
-  .recomitemphoto {
-    @apply w-full h-20 object-cover rounded-md mb-2;
-  }
-  
-  /* 추천 아이템 이름 */
-  .itemname {
-    @apply text-sm font-bold text-gray-800 mb-1;
-  }
-  
-  /* 추천 아이템 가격 */
-  .itemprice {
-    @apply text-sm font-medium text-gray-600 text-right; /* 가격을 오른쪽 정렬 */
-  }
-  
-  /* 추천 아이템 설명 */
-  .itemdescription {
-    @apply text-xs text-gray-600;
-  }
-  .recom {
-    @apply flex flex-col items-center w-full max-w-6xl mx-auto px-4 py-4;
-  }
-  
-  /* 추천 목록 제목 */
-  .recomtitle {
-    @apply text-lg font-bold text-gray-800 mb-4;
-  }
-  
-  /* 추천 목록 내용 컨테이너 */
-  .recomcontent {
-    @apply grid gap-4 w-full;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 반응형으로 열 조정 */
+    @apply grid gap-6 px-4; /* Grid 레이아웃과 간격 설정 */
+    grid-template-columns: repeat(3, 1fr); /* 데스크톱에서 세 열 */
   }
   
   /* 개별 추천 아이템 박스 */
   .recomitembox {
-    @apply flex flex-col bg-gray-200 rounded-lg shadow-md p-3 w-full;
+    @apply flex flex-col items-center bg-transparent p-0; /* 카드 스타일: 배경색 및 테두리 제거 */
   }
   
-  /* 추천 아이템 이미지 */
+  /* 이미지 스타일 */
   .recomitemphoto {
-    @apply w-full h-20 object-cover rounded-md mb-2;
+    @apply w-full h-64 bg-gray-300 rounded-lg object-cover mb-2; /* 큰 이미지 */
   }
   
-  /* 추천 아이템 이름 */
+  /* 텍스트 스타일 */
   .itemname {
-    @apply text-sm font-bold text-gray-800 mb-1;
+    @apply text-base font-medium text-gray-800 mt-2; /* 이름 스타일 */
   }
   
-  /* 추천 아이템 가격 */
   .itemprice {
-    @apply text-sm font-medium text-gray-600 text-right; /* 가격을 오른쪽 정렬 */
+    @apply text-lg font-bold text-gray-800 mt-2; /* 가격 스타일 */
   }
   
-  /* 추천 아이템 설명 */
   .itemdescription {
-    @apply text-xs text-gray-600;
+    @apply text-sm text-gray-500 mt-1; /* 설명 스타일 */
+  }
+  
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .recomcontent {
+      grid-template-columns: repeat(2, 1fr); /* 모바일 화면에서는 두 열 */
+    }
+  
+    .recomtitle {
+      @apply text-lg; /* 제목 크기 축소 */
+    }
+  
+    .recomitemphoto {
+      @apply h-48; /* 모바일에서 이미지 높이 축소 */
+    }
+  
+    .itemname {
+      @apply text-sm; /* 이름 크기 축소 */
+    }
+  
+    .itemprice {
+      @apply text-sm; /* 가격 크기 축소 */
+    }
+  
+    .itemdescription {
+      @apply text-xs; /* 설명 크기 축소 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .recomcontent {
+      grid-template-columns: repeat(4, 1fr); /* 데스크톱 화면에서 네 열 */
+    }
+  
+    .recomitemphoto {
+      @apply h-80; /* 데스크톱에서 더 큰 이미지 */
+    }
   }
   

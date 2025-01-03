@@ -25,7 +25,6 @@ const HomeProfile = () => {
         <div className={styles.name}>문학소년</div>
         </div>
         <div className={styles.right}>
-            <img src={alarm} alt="alarm" className={styles.alarm} />
             <img src={glass} alt="glass" className={styles.glass} onClick={searchClick}/>
         </div>
     </div>);

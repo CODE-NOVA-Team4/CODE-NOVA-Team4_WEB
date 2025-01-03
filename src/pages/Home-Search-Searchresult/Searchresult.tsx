@@ -22,7 +22,7 @@ const SearchResult = () =>{
 <Topbar/>
 <SearchCategory/>
 <SearchResultContent prob={query}/>
-<Deliverytype/>
+<Deliverytype name=""/>
 <Categoryitems/>
 <Bottombar/>
 </>);
