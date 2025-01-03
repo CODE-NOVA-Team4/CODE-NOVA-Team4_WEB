@@ -69,15 +69,17 @@
 .myMessage {
   margin-left: auto;
   flex-direction: row-reverse;
+  border-radius: 30px;
 }
 
 .otherMessage {
   margin-right: auto;
+  border-radius: 30px;
 }
 
 .profileImage {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -96,14 +98,15 @@
 
 .message {
   padding: 0.75rem 1rem;
-  border-radius: 16px;
+  border-radius: 30px;
   background: #f3f4f6;
   word-break: break-word;
+  font-size: 16px;
 }
 
 .myMessage .message {
-  background: #036b3f;
-  color: white;
+  background: #dae000;
+  color: #121212;
 }
 
 .timestamp {
@@ -133,7 +136,7 @@
 
 .input:focus {
   outline: none;
-  border-color: #036b3f;
+  border-color: #dae000;
 }
 
 .sendButton {
@@ -143,7 +146,7 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  background: #036b3f;
+  background: #dae000;
   color: white;
   border: none;
   border-radius: 50%;
