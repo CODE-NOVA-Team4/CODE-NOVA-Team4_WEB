@@ -1,4 +1,3 @@
-import Topbar from "../../components/common/Topbar/Topbar.tsx";
 import Bottombar from "../../components/common/Bottombar/Bottombar.tsx";
 import React from "react";
 import styles from "./Hcategory.module.css";
@@ -24,7 +23,6 @@ const Hcategory = () => {
   const { name } = useParams(); // 객체 구조 분해로 name 추출
   return (
     <>
-      <Topbar />
       <Back prob="카테고리"/>
 
       <Categoryitem prob={name} /> {/* prob에 name 값 전달 */}

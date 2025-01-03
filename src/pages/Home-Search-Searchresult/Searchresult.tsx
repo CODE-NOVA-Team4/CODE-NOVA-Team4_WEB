@@ -1,4 +1,3 @@
-import Topbar from "../../components/common/Topbar/Topbar.tsx";
 import Bottombar from "../../components/common/Bottombar/Bottombar.tsx";
 import React from "react";
 import styles from "./Searchresult.module.css"
@@ -19,7 +18,6 @@ const SearchResult = () =>{
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get("query")
     return(<>
-<Topbar/>
 <SearchCategory/>
 <SearchResultContent prob={query}/>
 <Deliverytype name=""/>

@@ -1,4 +1,3 @@
-import Topbar from "../../components/common/Topbar/Topbar.tsx";
 import Bottombar from "../../components/common/Bottombar/Bottombar.tsx";
 import React from 'react';
 import styles from "./Profile.module.css"
@@ -34,7 +33,6 @@ const Profiletitle = () =>{
 
 const Profile = () =>{
     return(<>
-<Topbar/>
 <Back prob="프로필"/>
 <Profiletitle/>
 <Profilecontent name ={"구매 내역"}/>
