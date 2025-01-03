@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Splash from './pages/Splash/Splash.tsx';
 import Welcome from './pages/Welcome/Welcome.tsx';
 import Login from './pages/Login/Login.tsx';
-import Signup from './pages/Signup/Signup.tsx';
+import Signup from './pages/signup/Signup.tsx';
 import ProductForm from './pages/CreateProduct/ProductForm.tsx';
 import ChatList from './pages/ChatList/ChatList.tsx';
 import ChatRoom from './pages/ChatRoom/ChatRoom.tsx';

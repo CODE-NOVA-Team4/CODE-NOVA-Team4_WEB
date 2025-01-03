@@ -1,6 +1,7 @@
 /* 전체 컨테이너 */
 .container {
-  @apply flex gap-4 items-center overflow-x-auto px-4; /* 가로 스크롤 가능 */
+  @apply flex gap-4 items-center overflow-x-auto; /* 가로 스크롤 가능 */
+  padding: 10px 24px 10px 1.5rem;
 }
 
 /* 직거래/택배 버튼 컨테이너 */
@@ -26,7 +27,7 @@
 
 /* 카테고리 버튼 */
 .categoryButton {
-  @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300 bg-white;
+  @apply rounded-full border text-gray-700 border-gray-300 bg-white;
   transition: all 0.3s ease;
   cursor: pointer;
   scroll-snap-align: start; /* 스크롤 스냅 */
@@ -36,133 +37,164 @@
 .activeCategory {
   @apply text-white;
   background-color: #dae000; /* 커스텀 배경색 */
-}
 
-/* --------------------------------- */
-/* 전체 컨테이너 */
-/* 전체 컨테이너 */
-.categoryitemsbox {
-  @apply flex flex-col gap-4 w-full p-4;
-  /* 세로 정렬 및 간격 추가 */
-  padding-bottom: calc(100px);
-}
+  /* 직거래/택배 버튼 */
+  .button {
+    @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300 bg-white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
 
-/* 각 아이템 박스 */
-.itembox {
-  @apply flex items-center w-full bg-gray-100 p-4 rounded-md gap-4;
-}
+  .active {
+    @apply bg-orange-400 text-white border-orange-500;
+  }
 
-/* 원형 이미지 컨테이너 */
-.circle {
-  @apply w-16 h-16 bg-gray-300 rounded-full flex-shrink-0;
-}
+  /* 카테고리 버튼 컨테이너 */
+  .categoryContainer {
+    @apply flex gap-2 flex-shrink-0; /* 카테고리 버튼 정렬 */
+  }
 
-/* 정보 영역 */
-.information {
-  @apply flex flex-col w-full gap-1; /* 이름, 가격, 시간 간 간격 추가 */
-}
+  /* 카테고리 버튼 */
+  .categoryButton {
+    @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300 bg-white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    scroll-snap-align: start; /* 스크롤 스냅 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  }
 
-/* 이름 */
-.typename {
-  @apply text-sm font-bold text-gray-800;
-  line-height: 1.2; /* 줄 간격 조정 */
-}
+  .activeCategory {
+    @apply text-white;
+    background-color: #dae000; /* 커스텀 배경색 */
+  }
 
-/* 가격 */
-.price {
-  @apply text-lg font-bold text-gray-900 mt-1; /* 이름 아래 여백 추가 */
-}
+  /* --------------------------------- */
+  /* 전체 컨테이너 */
+  /* 전체 컨테이너 */
+  .categoryitemsbox {
+    @apply flex flex-col gap-4 w-full p-4;
+    /* 세로 정렬 및 간격 추가 */
+    padding-bottom: calc(100px);
+  }
 
-/* 시간과 하트 컨테이너 */
-.metadata {
-  @apply flex items-center justify-between mt-2; /* 시간과 하트를 양쪽 정렬 */
-}
+  /* 각 아이템 박스 */
+  .itembox {
+    @apply flex items-center w-full bg-gray-100 p-4 rounded-md gap-4;
+  }
 
-/* 시간 */
-.time {
-  @apply text-xs text-gray-500;
-}
+  /* 원형 이미지 컨테이너 */
+  .circle {
+    @apply w-16 h-16 bg-gray-300 rounded-full flex-shrink-0;
+  }
 
-/* 하트 */
-.heart {
-  @apply flex items-center text-xs text-gray-500 gap-1;
-}
+  /* 정보 영역 */
+  .information {
+    @apply flex flex-col w-full gap-1; /* 이름, 가격, 시간 간 간격 추가 */
+  }
 
-/* 전체 컨테이너 */
-.backbox {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1.9rem;
-  padding-bottom: 0.5rem;
-  width: 100%;
-  max-width: 42rem;
-  justify-content: flex-start;
-}
+  /* 이름 */
+  .typename {
+    @apply text-sm font-bold text-gray-800;
+    line-height: 1.2; /* 줄 간격 조정 */
+  }
 
-/* 뒤로가기 아이콘 */
-.back {
-  @apply w-6 h-6 cursor-pointer; /* 기본 크기와 클릭 가능 스타일 */
-  transition: transform 0.2s ease; /* 클릭 시 애니메이션 */
-}
+  /* 가격 */
+  .price {
+    @apply text-lg font-bold text-gray-900 mt-1; /* 이름 아래 여백 추가 */
+  }
 
-.back:hover {
-  @apply scale-110; /* 호버 시 크기 증가 */
-}
+  /* 시간과 하트 컨테이너 */
+  .metadata {
+    @apply flex items-center justify-between mt-2; /* 시간과 하트를 양쪽 정렬 */
+  }
 
-/* 카테고리 제목 */
-.backtitle {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
+  /* 시간 */
+  .time {
+    @apply text-xs text-gray-500;
+  }
 
-/* 반응형 설정 */
-@media (max-width: 768px) {
+  /* 하트 */
+  .heart {
+    @apply flex items-center text-xs text-gray-500 gap-1;
+  }
+
+  /* 전체 컨테이너 */
   .backbox {
-    padding-left: 1.5rem;
-    padding-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.9rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    max-width: 42rem;
+    justify-content: flex-start;
   }
 
+  /* 뒤로가기 아이콘 */
   .back {
-    width: 24px;
-    height: 24px; /* 작은 화면에서 아이콘 크기 축소 */
+    @apply w-6 h-6 cursor-pointer; /* 기본 크기와 클릭 가능 스타일 */
+    transition: transform 0.2s ease; /* 클릭 시 애니메이션 */
   }
 
+  .back:hover {
+    @apply scale-110; /* 호버 시 크기 증가 */
+  }
+
+  /* 카테고리 제목 */
   .backtitle {
     font-size: 1.2rem;
     font-weight: 500;
   }
-}
 
-@media (min-width: 1024px) {
-  .backbox {
-    @apply px-6 py-3; /* 데스크톱 화면에서는 패딩 확장 */
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .backbox {
+      padding-left: 1.5rem;
+      padding-right: 0.5rem;
+    }
+
+    .back {
+      width: 24px;
+      height: 24px; /* 작은 화면에서 아이콘 크기 축소 */
+    }
+
+    .backtitle {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
   }
 
-  .back {
-    @apply w-8 h-8; /* 데스크톱 화면에서 아이콘 크기 확대 */
+  @media (min-width: 1024px) {
+    .backbox {
+      @apply px-6 py-3; /* 데스크톱 화면에서는 패딩 확장 */
+    }
+
+    .back {
+      @apply w-8 h-8; /* 데스크톱 화면에서 아이콘 크기 확대 */
+    }
+
+    .backtitle {
+      @apply text-xl; /* 데스크톱 화면에서 글씨 크기 확대 */
+    }
   }
 
-  .backtitle {
-    @apply text-xl; /* 데스크톱 화면에서 글씨 크기 확대 */
+  /* 전체 컨테이너 */
+  .Category {
+    @apply flex items-center justify-start w-full  bg-white; /* 왼쪽 정렬 */
+    /* 위쪽 여백 */
+    padding: 10px 308px 10px 1.5rem;
   }
-}
-
-/* 전체 컨테이너 */
-.Category {
-  @apply flex items-center justify-start w-full px-4 py-2 bg-white; /* 왼쪽 정렬 */
-  /* 위쪽 여백 */
-}
-
-/* 카테고리 박스 */
-.Categorybox {
-  @apply text-lg font-bold text-gray-800; /* 텍스트 스타일 */
-}
-
-/* 반응형 설정 */
-@media (max-width: 768px) {
+  .contenttop {
+    display: flex;
+    justify-content: space-between;
+  }
+  .contentbottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  /* 카테고리 박스 */
   .Categorybox {
     @apply text-base; /* 모바일 화면에서 글씨 크기 축소 */
   }

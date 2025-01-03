@@ -1,70 +1,106 @@
 .bottombar {
-    @apply w-full fixed bottom-0 flex flex-col items-center ;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   /* 상단 메뉴 영역 */
   .top {
-    @apply flex justify-around items-center w-full max-w-md bg-black rounded-full h-20; /* 기본 설정 */
+    display: flex;
+    align-items: center;
+    max-width: 768px; /* max-w-md */
+    background-color: black;
+    border-radius: 100px; /* rounded-full */
+    height: 80px; /* h-20 */
+    gap : 0;
+    justify-content: center; /* 아이템들을 가운데 정렬 */
+
   }
   
   /* 메뉴 아이템 */
   .menuItem {
-    @apply flex items-center justify-center w-28 h-16 rounded-full cursor-pointer bg-transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 112px; /* w-28 */
+    height: 64px; /* h-16 */
+    border-radius: 100px; /* rounded-full */
+    cursor: pointer;
+    background-color: transparent;
   }
   
   .menuItem.selected {
-    background-color: #DAE000;
-}
+    background-color: #dae000;
+  }
   
   /* 아이콘 */
   .icon {
-    @apply w-6 h-6;
+    width: 24px; /* w-6 */
+    height: 24px; /* h-6 */
   }
   
   /* 하단 바 */
   .bottom {
-    @apply flex bg-white w-full py-2 items-center justify-center h-14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+    padding: 0.5rem; /* py-2 */
+    height: 56px; /* h-14 */
   }
   
   /* 텍스트 인디케이터 */
   .indicator {
-    @apply text-white;
+    color: white;
   }
   
   /* 반응형 설정 */
   @media (max-width: 768px) {
     .top {
-      @apply h-16; /* 모바일에서 높이 축소 */
-    }
+        backdrop-filter: blur(10px);
+        width: 354px;
+height: 76px;
+
+        }
+
   
     .menuItem {
-      @apply w-24 h-12; /* 메뉴 아이템 크기 축소 */
+        width: 110px;
+        height: 60px;
     }
   
     .icon {
-      @apply w-5 h-5; /* 아이콘 크기 축소 */
+      width: 20px; /* w-5 */
+      height: 20px; /* h-5 */
     }
   
     .bottom {
-      @apply h-12; /* 하단 바 높이 축소 */
+      height: 48px; /* h-12 */
     }
   }
   
   @media (min-width: 1024px) {
     .top {
-      @apply max-w-lg h-24; /* 데스크톱에서 넓이와 높이 확대 */
+      max-width: 1024px; /* max-w-lg */
+      height: 96px; /* h-24 */
     }
   
     .menuItem {
-      @apply w-32 h-16; /* 메뉴 아이템 크기 확대 */
+      width: 128px; /* w-32 */
+      height: 64px; /* h-16 */
     }
   
     .icon {
-      @apply w-8 h-8; /* 아이콘 크기 확대 */
+      width: 32px; /* w-8 */
+      height: 32px; /* h-8 */
     }
   
     .bottom {
-      @apply h-16; /* 하단 바 높이 확대 */
+      height: 64px; /* h-16 */
     }
   }
   
