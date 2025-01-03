@@ -1,177 +1,230 @@
-/* Search.module.css */
-
 /* 전체 Search 컨테이너 */
 .search {
-    @apply flex items-center justify-center w-full p-4; /* 가운데 정렬 */
-    padding-top: calc(50px); 
-
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem; /* p-4 */
+    padding-top: calc(50px);
+  }
   
   /* 검색 박스 */
   .searchbox {
-    @apply flex items-center bg-gray-200 rounded-full transition-all;
-    width: 100%; /* 기본 너비 */
-    max-width: 70%; /* 전체 창의 90%로 제한 */
-    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    background-color: #e5e7eb; /* bg-gray-200 */
+    border-radius: 9999px; /* rounded-full */
+    transition: all 0.3s;
+    width: 100%;
+    max-width: 70%; /* 전체 창의 70%로 제한 */
+    padding: 0.5rem 1.5rem;
   }
-  
-  
-  /* 작은 화면에서는 너비 줄이기 */
-
   
   /* 원형 아이콘 */
   .circle {
-    @apply w-6 h-6 bg-white rounded-full flex items-center justify-center;
+    width: 1.5rem; /* w-6 */
+    height: 1.5rem; /* h-6 */
+    background-color: white;
+    border-radius: 9999px; /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 0.75rem;
   }
   
   /* 입력창 스타일 */
   .searchcontent {
-    @apply flex-grow bg-transparent text-sm text-gray-700 focus:outline-none;
+    flex-grow: 1;
+    background-color: transparent;
+    font-size: 0.875rem; /* text-sm */
+    color: #4b5563; /* text-gray-700 */
+    outline: none;
   }
   
   /* 화살표 벡터 */
   .searchvector {
-    @apply w-5 h-5 text-gray-500 ml-3; /* 항상 보이도록 유지 */
-    visibility: visible; /* V 아이콘을 항상 표시 */
+    width: 1.25rem; /* w-5 */
+    height: 1.25rem; /* h-5 */
+    color: #6b7280; /* text-gray-500 */
+    margin-left: 0.75rem;
+    visibility: visible;
   }
   
   /* 돋보기 아이콘 */
   .q {
-    @apply w-6 h-6 text-gray-500 ml-4;
+    width: 1.5rem; /* w-6 */
+    height: 1.5rem; /* h-6 */
+    color: #6b7280; /* text-gray-500 */
+    margin-left: 1rem;
   }
-  /* --------------------------------------search */
+  
+  /* --------------------------------------Search */
+  
   /* 전체 카테고리 컨테이너 */
-/* 전체 카테고리 컨테이너 */
-.category {
-    @apply flex flex-col  w-full max-w-5xl mx-auto px-4;
+  .category {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 80rem; /* max-w-5xl */
+    margin: 0 auto;
+    padding: 0 1.5rem; /* px-4 */
   }
   
   /* 카테고리 제목 */
   .categorytitle {
-    @apply text-lg font-bold text-gray-800 mb-4;
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 700; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+    margin-bottom: 5px; /* mb-4 */
+    padding: 15px 0;
   }
   
   /* 카테고리 타입 리스트 */
   .categorytype {
-    @apply flex gap-6 w-full overflow-x-auto whitespace-nowrap justify-center;
-    scroll-snap-type: x mandatory; /* 스크롤 스냅 활성화 */
-    -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
+    display: flex;
+    gap: 1.5rem; /* gap-6 */
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: center;
+  }
+  
+  /* 스크롤바 숨기기 */
+  .categorytype::-webkit-scrollbar {
+    display: none;
+  }
+  .categorytype {
+    -ms-overflow-style: none; /* IE */
+    scrollbar-width: none; /* Firefox */
   }
   
   /* 각각의 아이템 박스 */
   .itembox {
-    @apply flex flex-col items-center justify-center space-y-2 w-48 sm:w-32 lg:w-40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* space-y-2 */
+    width: 12rem; /* w-48 */
   }
   
-  /* 원형 이미지 컨테이너 */
   .typeimage {
-    @apply relative w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 flex items-center justify-center bg-gray-300 rounded-full overflow-hidden;
+    position: relative;
+    width: 5rem; /* w-20 */
+    height: 5rem; /* h-20 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d1d5db; /* bg-gray-300 */
+    border-radius: 9999px; /* rounded-full */
+    overflow: hidden;
   }
   
   /* 원형 배경 */
   .fakecircle {
-    @apply w-full h-full rounded-full;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px; /* rounded-full */
   }
   
   /* 타입 이름 */
   .typename {
-    @apply text-sm text-gray-700 sm:text-base font-medium text-center;
+    font-size: 0.875rem; /* text-sm */
+    color: #374151; /* text-gray-700 */
+    font-weight: 500; /* font-medium */
+    text-align: center;
   }
   
   /* 반응형 설정 */
   @media (max-width: 768px) {
     .categorytype {
-      @apply justify-start; /* 모바일에서는 왼쪽 정렬 */
-      scroll-padding-left: 16px; /* 스크롤 시작 위치를 조정 */
+      justify-content: flex-start; /* 모바일에서는 왼쪽 정렬 */
     }
   }
-  /* 스크롤바 숨기기 */
-  .categorytype::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리 등에서 스크롤바 숨기기 */
-  }
   
-  .categorytype {
-    -ms-overflow-style: none; /* IE에서 스크롤바 숨기기 */
-    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
-  }
-  /* recommmmmmmmmmmmmmmmmmmmmm */
-
-/* 전체 컨테이너 */
-.recom {
-    @apply w-full max-w-4xl mx-auto flex flex-col gap-6; /* 중앙 정렬 및 간격 조정 */
-    margin-top: 50px;
+  /* 전체 컨테이너 */
+  .recom {
+    width: 100%;
+    max-width: 64rem; /* max-w-4xl */
+    padding : 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* gap-6 */
+    margin-bottom : 124px;
   }
   
   /* 제목 영역 */
   .recomtitle {
-    @apply text-xl font-bold text-gray-800 px-4; /* 제목 스타일 */
-    margin-bottom: 16px; /* 제목과 콘텐츠 간격 */
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+    padding: 0 1.5rem; /* px-4 */
+    margin-bottom: 1rem; /* 제목과 콘텐츠 간격 */
   }
   
   /* 콘텐츠 영역 */
   .recomcontent {
-    @apply grid gap-6 px-4; /* Grid 레이아웃과 간격 설정 */
-    grid-template-columns: repeat(3, 1fr); /* 데스크톱에서 세 열 */
+    display: grid;
+    gap: 1.5rem; /* gap-6 */
+    padding: 0 1.5rem; /* px-4 */
+    grid-template-columns: repeat(3, 1fr);
   }
   
   /* 개별 추천 아이템 박스 */
   .recomitembox {
-    @apply flex flex-col items-center bg-transparent p-0; /* 카드 스타일: 배경색 및 테두리 제거 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    padding: 0;
   }
   
   /* 이미지 스타일 */
   .recomitemphoto {
-    @apply w-full h-64 bg-gray-300 rounded-lg object-cover mb-2; /* 큰 이미지 */
+    width: 100%;
+    height: 16rem; /* h-64 */
+    background-color: #d1d5db; /* bg-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    object-fit: cover;
+    margin-bottom: 0.5rem;
   }
   
   /* 텍스트 스타일 */
   .itemname {
-    @apply text-base font-medium text-gray-800 mt-2; /* 이름 스타일 */
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-medium */
+    color: #1f2937; /* text-gray-800 */
+    margin-top: 0.5rem;
   }
   
   .itemprice {
-    @apply text-lg font-bold text-gray-800 mt-2; /* 가격 스타일 */
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 700; /* font-bold */
+    color: #1f2937; /* text-gray-800 */
+    margin-top: 0.5rem;
   }
   
   .itemdescription {
-    @apply text-sm text-gray-500 mt-1; /* 설명 스타일 */
+    font-size: 0.875rem; /* text-sm */
+    color: #6b7280; /* text-gray-500 */
+    margin-top: 0.25rem;
   }
   
   /* 반응형 설정 */
   @media (max-width: 768px) {
     .recomcontent {
-      grid-template-columns: repeat(2, 1fr); /* 모바일 화면에서는 두 열 */
+      grid-template-columns: repeat(2, 1fr);
     }
-  
-    .recomtitle {
-      @apply text-lg; /* 제목 크기 축소 */
-    }
-  
     .recomitemphoto {
-      @apply h-48; /* 모바일에서 이미지 높이 축소 */
-    }
-  
-    .itemname {
-      @apply text-sm; /* 이름 크기 축소 */
-    }
-  
-    .itemprice {
-      @apply text-sm; /* 가격 크기 축소 */
-    }
-  
-    .itemdescription {
-      @apply text-xs; /* 설명 크기 축소 */
+      height: 12rem; /* h-48 */
     }
   }
-  
   @media (min-width: 1024px) {
     .recomcontent {
-      grid-template-columns: repeat(4, 1fr); /* 데스크톱 화면에서 네 열 */
+      grid-template-columns: repeat(4, 1fr);
     }
-  
     .recomitemphoto {
-      @apply h-80; /* 데스크톱에서 더 큰 이미지 */
+      height: 20rem; /* h-80 */
     }
   }
   

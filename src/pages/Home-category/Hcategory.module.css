@@ -1,7 +1,9 @@
 /* 전체 컨테이너 */
 .container {
-    @apply flex gap-4 items-center overflow-x-auto px-4; /* 가로 스크롤 가능 */
-  }
+    @apply flex gap-4 items-center overflow-x-auto; /* 가로 스크롤 가능 */
+    padding: 10px 24px 10px 1.5rem;
+
+}
   
   /* 직거래/택배 버튼 컨테이너 */
   .toggleContainer {
@@ -28,7 +30,7 @@
   
   /* 카테고리 버튼 */
   .categoryButton {
-    @apply px-4 py-2 rounded-full border text-gray-700 border-gray-300 bg-white;
+    @apply rounded-full border text-gray-700 border-gray-300 bg-white;
     transition: all 0.3s ease;
     cursor: pointer;
     scroll-snap-align: start; /* 스크롤 스냅 */
@@ -46,15 +48,17 @@
   /* 전체 컨테이너 */
 /* 전체 컨테이너 */
 .categoryitemsbox {
-    @apply flex flex-col gap-4 w-full p-4;
+    @apply flex flex-col gap-4 w-full ;
      /* 세로 정렬 및 간격 추가 */
-     padding-bottom: calc(100px); 
-
+     margin-bottom: 20px;
+     padding:1.5rem;
   }
   
   /* 각 아이템 박스 */
   .itembox {
-    @apply flex items-center w-full bg-gray-100 p-4 rounded-md gap-4;
+    @apply flex items-center w-full py-4 rounded-md gap-4;
+    border-bottom: #f4f4f4 1px solid;
+    
   }
   
   /* 원형 이미지 컨테이너 */
@@ -96,10 +100,12 @@
 
 /* 전체 컨테이너 */
 .backbox {
-    @apply flex items-center gap-2 px-4 py-2; /* 좌우 간격과 패딩 */
+    @apply flex items-center gap-2 ; /* 좌우 간격과 패딩 */
     @apply w-full max-w-2xl   justify-start; /* 왼쪽 정렬 */
     /* 너비 제한 */
     margin-top: 60px; /* 위쪽 마진 50px */
+    padding: 10px 20px 10px 10px;
+
   }
   
   /* 뒤로가기 아이콘 */
@@ -148,10 +154,19 @@
   
   /* 전체 컨테이너 */
 .Category {
-    @apply flex items-center justify-start w-full px-4 py-2 bg-white; /* 왼쪽 정렬 */
-     /* 위쪽 여백 */
+    @apply flex items-center justify-start w-full  bg-white; /* 왼쪽 정렬 */
+     /* 위쪽 여백 */padding: 10px 308px 10px 1.5rem;
+
   }
-  
+  .contenttop{
+    display: flex;
+    justify-content: space-between;
+  }
+  .contentbottom{
+    display: flex;
+    justify-content: space-between;
+
+  }
   /* 카테고리 박스 */
   .Categorybox {
     @apply text-lg font-bold text-gray-800; /* 텍스트 스타일 */

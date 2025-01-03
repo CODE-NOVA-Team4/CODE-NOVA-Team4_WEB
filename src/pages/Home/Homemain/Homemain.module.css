@@ -1,81 +1,119 @@
 /* 전체 컨테이너 */
 .titlebox {
-    @apply flex items-center justify-between w-full max-w-5xl mx-auto px-8;
-    margin-top: 60px; /* 위쪽 여백 */
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 80rem; /* 5xl */
+    padding: 20px 24px 10px 24px; /* px-8 */
+    margin-top: 40px; /* 위쪽 여백 */
+    margin-bottom: 20px; /* 아래쪽 여백 */
   }
-  .left{
-    @apply flex 
+  
+  .left {
+    display: flex;
   }
-  .right{
-    @apply flex
+  
+  .right {
+    display: flex;
   }
+  
   /* 프로필 이미지 */
   .titleimg {
-    @apply flex items-center justify-center w-20 h-20 bg-gray-200 rounded-full; /* 원형 이미지 스타일 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem; /* 20 */
+    height: 5rem; /* 20 */
+    background-color: #e5e7eb; /* gray-200 */
+    border-radius: 50%; /* 원형 */
   }
   
   .titlecircle {
-    @apply w-16 h-16 bg-gray-300 rounded-full; /* 내부 원 */
+    width: 4rem; /* 16 */
+    height: 4rem; /* 16 */
+    background-color: #d1d5db; /* gray-300 */
+    border-radius: 50%; /* 원형 */
   }
   
   /* 이름 */
   .name {
-    @apply text-2xl font-medium text-gray-800 mx-8 flex items-center; /* 텍스트 스타일, 간격, 세로 가운데 정렬 */
-}
+    font-size: 1.5rem; /* 2xl */
+    font-weight: 500; /* medium */
+    color: #1f2937; /* gray-800 */
+    margin: 0 2rem; /* mx-8 */
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+  }
   
   /* 알람 아이콘 */
   .alarm {
-    @apply w-20 h-20 cursor-pointer; /* 아이콘 크기를 원만큼 키움 */
+    width: 5rem; /* 20 */
+    height: 5rem; /* 20 */
+    cursor: pointer;
   }
   
   /* 돋보기 아이콘 */
   .glass {
-    @apply w-20 h-20 cursor-pointer ml-8; /* 아이콘 크기와 간격 조정 */
+    width: 5rem; /* 20 */
+    height: 5rem; /* 20 */
+    cursor: pointer;
+    margin-left: 2rem; /* ml-8 */
   }
   
   /* 반응형 설정 */
   @media (max-width: 1024px) {
     .titlebox {
-      @apply max-w-3xl px-6; /* 태블릿 화면에서 컨테이너 크기 조정 */
+      max-width: 48rem; /* 3xl */
+      padding: 0 1.5rem; /* px-6 */
     }
   
     .titleimg {
-      @apply w-16 h-16; /* 프로필 이미지 크기 축소 */
+      width: 4rem; /* 16 */
+      height: 4rem; /* 16 */
     }
   
     .titlecircle {
-      @apply w-16 h-16; /* 내부 원 크기 축소 */
+      width: 4rem; /* 16 */
+      height: 4rem; /* 16 */
     }
   
     .name {
-      @apply text-xl mx-6; /* 이름 텍스트 크기와 간격 축소 */
+      font-size: 1.25rem; /* xl */
+      margin: 0 1.5rem; /* mx-6 */
     }
   
-    .alarm, .glass {
-      @apply w-16 h-16; /* 아이콘 크기 축소 */
+    .alarm,
+    .glass {
+      width: 4rem; /* 16 */
+      height: 4rem; /* 16 */
     }
   }
   
   @media (max-width: 768px) {
     .titlebox {
-      @apply max-w-sm px-4; /* 모바일 화면에서 컨테이너 크기 축소 */
+      padding: 0 1.5rem; /* px-4 */
     }
   
     .titleimg {
-      @apply w-16 h-16; /* 프로필 이미지 크기 축소 */
+      width: 4rem; /* 16 */
+      height: 4rem; /* 16 */
     }
   
     .titlecircle {
-      @apply w-14 h-14; /* 내부 원 크기 축소 */
+      width: 3.5rem; /* 14 */
+      height: 3.5rem; /* 14 */
     }
   
     .name {
-      @apply text-lg mx-4; /* 이름 텍스트 크기와 간격 축소 */
+      font-size: 1.125rem; /* lg */
+      margin: 0 1rem; /* mx-4 */
     }
   
-    .alarm, .glass {
-      @apply w-16 h-16; /* 아이콘 크기 축소 */
+    .alarm,
+    .glass {
+      width: 4rem; /* 16 */
+      height: 4rem; /* 16 */
     }
   }
   

@@ -17,10 +17,16 @@ const Categoryitems = () =>{
                     <div key={index} className={styles.itembox}>
                         <div className={styles.circle}></div>
                         <div className={styles.information}>
-                            <div className={styles.typename}>{Category.name}</div>
-                            <div className={styles.price}>{Category.price}</div>
-                            <div className={styles.time}>{Category.time}</div>
-                            <div className={styles.heart}><img src={heart} alt="heart"></img>{Category.heart}</div>
+                            <div className={styles.contenttop}>
+                                <div className={styles.typename}>{Category.name}</div>
+                                <div className={styles.time}>{Category.time}</div>
+
+                            </div>
+                            <div className={styles.contentbottom}>
+                                <div className={styles.price}>{Category.price}</div>
+                                <div className={styles.heart}><img src={heart} alt="heart"></img>{Category.heart}</div>
+                            </div>
+                            
 
                         </div>
                     </div>
