@@ -6,6 +6,7 @@ import styles from './ChatList.module.css';
 import backgreenArrow from '../../assets/images/arrow-green.svg';
 import { initiateSocket, disconnectSocket, getSocket } from '../../utils/socket.ts';
 import { ChatRoom } from '../../types/chat.ts';
+import Bottombar from "../../components/common/Bottombar/Bottombar.tsx";
 
 interface UnreadMessage {
   roomId: string;
@@ -149,6 +150,7 @@ const ChatList = () => {
           </div>
         ))}
       </div>
+      <Bottombar/>
     </div>
   );
 };
