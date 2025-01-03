@@ -26,10 +26,12 @@ const Profiletitle = () =>{
             // sellProducts: [{ productId: '', picture: '', productName: '', price: '', description: '' }],
             // name: name,
         });
+        const userId = localStorage.getItem('userId');
+
         useEffect(() => {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get('/users/1/myPage');
+                    const response = await axios.get(`/users/${userId}/myPage`);
                     setProfileData(response.data.result);
                 } catch (error) {
                     console.error('API 요청 중 오류 발생:', error);
