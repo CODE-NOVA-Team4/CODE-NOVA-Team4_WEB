@@ -4,11 +4,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-top: 30px;
+  padding: 30px 1rem 0.5rem 1rem;
   position: relative;
 }
 
@@ -27,30 +23,23 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 9999px;
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity, 1));
+  border-radius: 50%;
+  background-color: #d1d5db;
   position: relative;
 }
-
-/* 배지
-  .circle::after {
-    @apply absolute bottom-0 right-0 text-xs font-bold text-white bg-pink-500 rounded-full w-5 h-5 flex items-center justify-center;
-    content: "15";
-  } */
 
 /* 이름 텍스트 */
 .name {
   font-size: 1.2rem;
   line-height: 1.5rem;
   font-weight: 500;
-  --tw-text-opacity: 1;
   color: #121212;
 }
 
 /* 학과명 텍스트 */
 .subject {
-  @apply text-sm text-gray-600;
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 
 /* 설정 아이콘 */
@@ -58,7 +47,6 @@
   height: 1.3rem;
   width: 1.3rem;
   cursor: pointer;
-  --tw-text-opacity: 1;
   color: #121212;
 }
 
@@ -66,8 +54,12 @@
 
 /* 전체 컨테이너 */
 .profilecontent {
-  @apply w-full max-w-4xl mx-auto flex flex-col gap-6; /* 중앙 정렬 및 간격 조정 */
-  margin-top: 30px;
+  width: 100%;
+  max-width: 1024px;
+  margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 /* 제목 영역 */
@@ -75,30 +67,32 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0 1rem;
 }
 
 .expense {
-  @apply text-xl font-bold text-gray-800; /* 제목 스타일 */
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1f2937;
 }
 
 .expenseplus {
-  @apply text-sm cursor-pointer; /* "더보기" 스타일 */
+  font-size: 0.875rem;
+  cursor: pointer;
   color: #121212;
   text-decoration: underline;
 }
 
 /* 콘텐츠 영역 */
 .contentcontent {
-  display: flex; /* grid에서 flex로 변경 */
+  display: flex;
   gap: 1rem;
   padding: 1rem;
   padding-bottom: 3rem;
-  overflow-x: auto; /* 수평 스크롤 추가 */
+  overflow-x: auto; /* 가로 스크롤 활성화 */
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  white-space: nowrap;
+  white-space: nowrap; /* 요소 줄바꿈 방지 */
 }
 
 .contentcontent::-webkit-scrollbar {
@@ -116,8 +110,7 @@
 
 /* 개별 콘텐츠 아이템 */
 .contentitem {
-  flex: 0 0 auto; /* flex-shrink: 0으로 설정하여 아이템이 줄어들지 않도록 */
-  width: 170px; /* 아이템 너비 고정 */
+  flex:  0 0 auto;
 }
 
 .contentitemimg {
@@ -129,25 +122,34 @@
 
 /* 텍스트 스타일 */
 .itemname {
-  @apply text-base font-medium text-gray-800 mt-2; /* 이름 스타일 */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-top: 0.5rem;
 }
 
 .iteminfo {
-  @apply flex justify-between w-full mt-2; /* 한 줄에 배치 */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 .itemday {
-  @apply text-sm text-gray-500; /* 날짜 스타일 */
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 
 .itemprice {
-  @apply text-sm font-bold text-gray-800; /* 가격 스타일 */
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: #1f2937;
 }
 
 /* 반응형 설정 */
 @media (max-width: 768px) {
   .contentcontent {
-    grid-template-columns: repeat(2, 1fr); /* 모바일 화면에서는 두 열 */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .expense {
@@ -157,28 +159,28 @@
   }
 
   .expenseplus {
-    @apply text-xs; /* "더보기" 크기 축소 */
+    font-size: 0.75rem;
   }
 
   .contentitemimg {
-    @apply h-48; /* 모바일에서 이미지 크기 축소 */
+    height: 192px;
   }
 
   .itemname {
-    @apply text-sm; /* 이름 크기 축소 */
+    font-size: 0.875rem;
   }
 
   .iteminfo {
-    @apply text-xs; /* 모바일에서 날짜와 가격 크기 축소 */
+    font-size: 0.75rem;
   }
 }
 
 @media (min-width: 1024px) {
   .contentcontent {
-    grid-template-columns: repeat(4, 1fr); /* 데스크톱 화면에서 네 열 */
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .contentitemimg {
-    @apply h-80; /* 데스크톱에서 더 큰 이미지 */
+    height: 320px;
   }
 }

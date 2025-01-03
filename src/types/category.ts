@@ -1,12 +1,12 @@
-import one from "../assets/images/Home-Category-one.svg"
-import two from "../assets/images/Home-Category-two.svg"
-import three from "../assets/images/Home-Category-three.svg"
-import four from "../assets/images/Home-Category-four.svg"
-import five from "../assets/images/Home-Category-five.svg"
-import six from "../assets/images/Home-Category-six.svg"
-import seven from "../assets/images/Home-Category-seven.svg"
-import eight from "../assets/images/Home-Category-eight.svg"
-import nine from "../assets/images/Home-Category-nine.svg"
+import one from "../assets/images/Home-Category-one.svg";
+import two from "../assets/images/Home-Category-two.svg";
+import three from "../assets/images/Home-Category-three.svg";
+import four from "../assets/images/Home-Category-four.svg";
+import five from "../assets/images/Home-Category-five.svg";
+import six from "../assets/images/Home-Category-six.svg";
+import seven from "../assets/images/Home-Category-seven.svg";
+import eight from "../assets/images/Home-Category-eight.svg";
+import nine from "../assets/images/Home-Category-nine.svg";
 
 export type Category = {
   id: string;
