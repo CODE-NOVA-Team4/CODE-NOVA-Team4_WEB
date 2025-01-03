@@ -4,7 +4,6 @@ import { api } from '../../api/axios.ts';
 import styles from './Login.module.css';
 import backwhiteArrow from '../../assets/images/arrow-white.svg';
 import logogreen from '../../assets/images/logo-korean-green.svg';
-
 interface LoginResponse {
   userId: string;
 }

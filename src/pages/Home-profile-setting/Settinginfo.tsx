@@ -114,12 +114,13 @@ const handleWithdrawal = async () => {
       }
   }
 };
-
+const userId = localStorage.getItem('userId');
+console.log(`userid:${userId}`);
   // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/users/1/info');
+        const response = await axios.get(`/users/${userId}/info`);
         const result = response.data.result;
         setEinfo(result); // Einfo 업데이트
       } catch (error) {
