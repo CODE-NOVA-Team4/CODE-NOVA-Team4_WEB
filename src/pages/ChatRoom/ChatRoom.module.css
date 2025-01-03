@@ -63,7 +63,7 @@
 .messageWrapper {
   display: flex;
   gap: 0.5rem;
-  max-width: 70%;
+  max-width: 100%;
 }
 
 .myMessage {
