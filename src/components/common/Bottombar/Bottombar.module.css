@@ -1,34 +1,70 @@
-/* Bottombar.module.css */
-
-/* 전체 바 스타일 */
 .bottombar {
-    @apply flex flex-col items-center justify-between w-full h-20 bg-gray-100 border-t border-gray-300 fixed bottom-0 z-50;
+    @apply w-full fixed bottom-0 flex flex-col items-center ;
   }
   
-  /* 상단 메뉴 섹션 */
+  /* 상단 메뉴 영역 */
   .top {
-    @apply flex justify-around items-center w-full px-4 py-2;
+    @apply flex justify-around items-center w-full max-w-md bg-black rounded-full h-20; /* 기본 설정 */
   }
   
-  /* 각각의 메뉴 */
-  .menu {
-    @apply flex items-center justify-center w-16 h-16 rounded-full;
+  /* 메뉴 아이템 */
+  .menuItem {
+    @apply flex items-center justify-center w-28 h-16 rounded-full cursor-pointer bg-transparent;
   }
   
-  /* 메뉴 아이콘 크기 */
-  .menu img {
-    @apply w-9 h-9;
+  .menuItem.selected {
+    background-color: #DAE000;
+}
+  
+  /* 아이콘 */
+  .icon {
+    @apply w-6 h-6;
   }
   
-  /* 하단 인디케이터 */
+  /* 하단 바 */
+  .bottom {
+    @apply flex bg-white w-full py-2 items-center justify-center h-14;
+  }
+  
+  /* 텍스트 인디케이터 */
   .indicator {
-    @apply flex justify-center items-center w-full relative -mt-2; /* 인디케이터를 위로 이동 */
-    position: relative; /* 부모 컨테이너와 독립적으로 조정 */
-    padding-bottom: 10px; /* 하단에서 약간 위로 올림 */
-
+    @apply text-white;
   }
   
-  .indicator img {
-    @apply w-24 h-2;
+  /* 반응형 설정 */
+  @media (max-width: 768px) {
+    .top {
+      @apply h-16; /* 모바일에서 높이 축소 */
+    }
+  
+    .menuItem {
+      @apply w-24 h-12; /* 메뉴 아이템 크기 축소 */
+    }
+  
+    .icon {
+      @apply w-5 h-5; /* 아이콘 크기 축소 */
+    }
+  
+    .bottom {
+      @apply h-12; /* 하단 바 높이 축소 */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .top {
+      @apply max-w-lg h-24; /* 데스크톱에서 넓이와 높이 확대 */
+    }
+  
+    .menuItem {
+      @apply w-32 h-16; /* 메뉴 아이템 크기 확대 */
+    }
+  
+    .icon {
+      @apply w-8 h-8; /* 아이콘 크기 확대 */
+    }
+  
+    .bottom {
+      @apply h-16; /* 하단 바 높이 확대 */
+    }
   }
   

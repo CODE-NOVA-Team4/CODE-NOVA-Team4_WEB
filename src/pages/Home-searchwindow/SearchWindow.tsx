@@ -57,3 +57,56 @@ const SearchWindow = () =>{
 </>);
 }
 export default SearchWindow;
+
+// const [searches, setSearches] = useState([
+//     "미개봉 아이패드",
+//     "자차템",
+//     "검색어 입력",
+//     "검색어 입력",
+//     "검색어 입력",
+//   ]);
+  
+// //   const deleteSearch = (index) => {
+// //     setSearches((prev) => prev.filter((_, i) => i !== index));
+// //   };
+
+// //   // 전체 삭제
+// //   const deleteAll = () => {
+// //     setSearches([]);
+// //   };
+// const fetchRecentSearches = async () => {
+   
+//     try {
+//       const response = await axios.get("/recent-search/list");
+//       setSearches(response.data.recentSearches);
+//     } catch (err) {
+//       console.error(err);
+//     } finally {
+//     }
+//   };
+
+//   // 특정 검색어 삭제
+//   const deleteSearch = async (index) => {
+//     const recentSearchId = searches[index].recentSearchId;
+//     try {
+//       await axios.patch(`/recent-search/${recentSearchId}/delete`);
+//       setSearches((prev) => prev.filter((_, i) => i !== index));
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+//   // 전체 삭제
+//   const deleteAll = async () => {
+//     try {
+//       await axios.patch("/recent-search/delete");
+//       setSearches([]);
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+//   // 초기 데이터 로드
+//   useEffect(() => {
+//     fetchRecentSearches();
+//   }, []);
