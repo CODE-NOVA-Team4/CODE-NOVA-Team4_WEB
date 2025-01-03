@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Setting.module.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface Emailinfo {
   nickname: string;
@@ -10,6 +11,7 @@ interface Emailinfo {
 }
 
 const Settinginfo = () => {
+  const navigate = useNavigate();
   const [Einfo, setEinfo] = useState<Emailinfo>({
     nickname: '',
     department: '',
@@ -40,7 +42,7 @@ const Settinginfo = () => {
           ?.split('=')[1];
           console.log(sessionId);
         
-        const response = await api.post(
+        const response = await axios.post(
           '/auth/logout',
           null,
           {
@@ -82,7 +84,7 @@ const handleWithdrawal = async () => {
 
           console.log('회원탈퇴 요청 시작');  // 디버깅용 로그 추가
 
-          const response = await api.patch('/auth/signout', {}, {  // 빈 객체라도 데이터로 전송
+          const response = await axios.patch('/auth/signout', {}, {  // 빈 객체라도 데이터로 전송
               headers: {
                   'Authorization': `Bearer ${localStorage.getItem('token')}`,
                   'Content-Type': 'application/json'
@@ -111,12 +113,13 @@ const handleWithdrawal = async () => {
       }
   }
 };
-
+const userId = localStorage.getItem('userId');
+console.log(`userid:${userId}`);
   // Fetch data on component mount
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/users/1/info');
+        const response = await axios.get(`/users/${userId}/info`);
         const result = response.data.result;
         setEinfo(result); // Einfo 업데이트
       } catch (error) {

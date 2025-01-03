@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import fakesrc from '../../assets/images/fakesrc.svg';
+// import useUserStore from '../../stores/useUserStore';
 interface Product {
     productId: string;
     picture: string;
@@ -14,7 +15,7 @@ interface Product {
 
 
 const Profilecontent = ({ name }: { name: string }) => {
-    
+
     const [buyProducts,setbuyProducts] = useState<Product[]>([]);
     const [sellProducts,setsellProducts] = useState<Product[]>([]);
 
@@ -23,12 +24,12 @@ const Profilecontent = ({ name }: { name: string }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const isVertical = location.pathname === '/Profile/1' || location.pathname === '/Profile/2';
-
+    const userId = localStorage.getItem('userId');
     useEffect(() => {
         
         const sellData = async () => {
             try {
-                const response = await axios.get('/users/1/sell-product');
+                const response = await axios.get(`/users/${userId}/sell-product`);
                 // console.log(response.data.result.products);
                 setsellProducts(response.data.result.products);
             } catch (error) {
