@@ -20,7 +20,7 @@ const Profilecontent = ({name}) =>{
     const isVertical = location.pathname === '/Profile/1' || location.pathname === '/Profile/2';
 
     const handleClick = () => {
-      const newPath = `${location.pathname}${number}`; // 현재 주소에 /number 추가
+      const newPath = `${location.pathname}/${number}`; // 현재 주소에 /number 추가
       navigate(newPath); // 페이지 이동
     };
     

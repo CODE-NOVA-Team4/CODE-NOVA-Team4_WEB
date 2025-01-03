@@ -50,6 +50,7 @@ const SearchWindow = () =>{
     return(<>
 <Topbar/>
 <div style={{ paddingTop: "calc(50px)" }}></div>
+
 <SearchCategory/>
 <Recentsearch/>
 <Bottombar/>

@@ -15,13 +15,17 @@ const Profiletitle = () =>{
         const newPath = `/setting`; 
         navigate(newPath); // 페이지 이동
       };
+    const scrapClick = () =>{
+        const newPath = `/scrap`; 
+        navigate(newPath);
+    };
     return(
         <div className={styles.profiletitle}>
             <div className={styles.profilebox}>
                 <div className={styles.circle}></div>
                 <div className={styles.name}>박민주</div>
                 <div className={styles.subject}>일본문화언어학과</div>
-                <img src={heart} alt="" className={styles.setting} />
+                <img src={heart} alt="" className={styles.setting} onClick = {scrapClick} />
                 <img src={setting} alt="" className={styles.setting} onClick={settingClick}/>
             </div>
         </div>

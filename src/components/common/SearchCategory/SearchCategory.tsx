@@ -1,12 +1,14 @@
 import React,{useState} from 'react';
 import styles from './SearchCategory.module.css';
 import { useLocation, useNavigate } from "react-router-dom";
+import backsp from "../../../assets/images/Back.svg"
 
 const SearchCategory = ()=>{
     const location = useLocation(); // 현재 경로 가져오기
     const navigate = useNavigate(); // 페이지 이동을 위한 hook
     const [searchText, setSearchText] = useState(""); // 입력된 검색어 상태
-
+    const segments = location.pathname.split("/"); // ["", "hcategory", "학용품"]
+    const seg = segments[1]==="hcategory"? true : false;
     const handleClick = () => {
         if (location.pathname === "/search") {
           // 두 번째 페이지에서는 입력 가능
@@ -21,8 +23,13 @@ const SearchCategory = ()=>{
           navigate(`/result?query=${encodeURIComponent(searchText)}`);
         }
       }; 
+     const homesearch = () =>{
+        navigate("/Home");
+        
+     }
     return (
        <div className={styles.parentContainer}>
+                {!seg && <img src={backsp} alt="" className={styles.back} onClick={homesearch}/>}
             <div className={styles.searchBar} onClick={handleClick}>
             <input
                 type="text"

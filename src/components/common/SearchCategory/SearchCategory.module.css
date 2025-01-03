@@ -12,6 +12,17 @@
     height: 60px; /* 고정 높이 */
     transition: all 0.3s ease;
   }
+ 
+  .back {
+    @apply  cursor-pointer; /* 기본 크기와 클릭 가능 스타일 */
+    transition: transform 0.2s ease; /* 클릭 시 애니메이션 */
+    padding: 10px;
+
+}
+  
+  .back:hover {
+    @apply scale-110; /* 호버 시 크기 증가 */
+  }
   
   /* 검색 입력창 */
   .searchInput {

@@ -11,6 +11,7 @@ import SearchWindow from './pages/Home-searchwindow/SearchWindow.tsx';
 import SearchResult from './pages/Home-Search-Searchresult/Searchresult.tsx';
 import Setting from './pages/Home-profile-setting/Setting.tsx';
 import Expense from './pages/Home-profile-expense/Expense.tsx';
+import Scrap from './pages/Home-prrofile-scrap/Scrap.tsx';
 
 const PageTransition = ({ children, isSlide = false }: { children: React.ReactNode, isSlide?: boolean }) => {
   const pageVariants = isSlide ? {
@@ -91,6 +92,11 @@ const AnimatedRoutes = () => {
         <Route path="/profile/:number" element={
           <PageTransition isSlide={false}>
             <Expense />
+          </PageTransition>
+        } />
+        <Route path="/scrap" element={
+          <PageTransition isSlide={false}>
+            <Scrap />
           </PageTransition>
         } />
       </Routes>

@@ -6,14 +6,19 @@ import two from "../../../assets/images/Home-Category-two.svg"
 import three from "../../../assets/images/Home-Category-three.svg"
 import four from "../../../assets/images/Home-Category-four.svg"
 import five from "../../../assets/images/Home-Category-four.svg"
+import axios from 'axios';
 
 const Category = () => {
     const categories = [
-        { name: "전공서적", src: one, description: "대학 전공 서적" },
-        { name: "족보", src: two, description: "시험 대비 족보 자료" },
-        { name: "학용품", src: three, description: "노트, 펜 등 학습 도구" },
-        { name: "전자기기", src: four, description: "노트북, 태블릿 등 전자 기기" },
-        { name: "의류", src: five, description: "일상복, 운동복 등 의류" },
+        { name: "전공서적", src: one,  },
+        { name: "족보", src: two,  },
+        { name: "학용품", src: three, },
+        { name: "전자기기", src: four,  },
+        { name: "의류", src: five,  },
+        { name: "생활용품", src: five, },
+        { name: "취미/여가", src: five, },
+        { name: "운동용품", src: five, },
+        { name: "기타", src: five, },
       ];
       const navigate = useNavigate();
       const handleCategoryClick = (name) => {
