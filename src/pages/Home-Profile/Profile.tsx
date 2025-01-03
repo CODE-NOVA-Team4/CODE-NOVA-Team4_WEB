@@ -7,6 +7,7 @@ import Profilecontent from "./Profilecontent.tsx";
 import Back from "../Home-category/Back.tsx";
 import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import userProfile from "../../assets/images/k.svg"
 
 
 interface ProfileContentProps {
@@ -50,7 +51,13 @@ const Profiletitle = () =>{
     return(
         <div className={styles.profiletitle}>
             <div className={styles.profilebox}>
-                <div className={styles.circle}></div>
+                <div className={styles.titleimg}>
+                    <img 
+                        src={userProfile} 
+                        alt="프로필" 
+                        className={styles.profileImage}
+                    />
+                </div>
                 <div className={styles.name}>{profileData.nickname}</div>
                 <div className={styles.subject}>{profileData.department}</div>
                 <img src={heart} alt="" className={styles.setting} onClick = {scrapClick} />

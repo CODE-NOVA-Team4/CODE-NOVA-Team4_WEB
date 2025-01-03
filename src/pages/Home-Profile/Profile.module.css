@@ -15,19 +15,29 @@
   gap: 1.5rem;
 }
 
-/* 프로필 이미지 (원형) */
-.circle {
-  display: flex;
-  height: 60px;
-  width: 60px;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 50%;
-  background-color: #d1d5db;
-  position: relative;
+.profileImage {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
 }
 
+.titleimg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  background-color: white;
+  border-radius: 50%;
+  overflow: hidden; /* 이미지가 원 밖으로 나가지 않도록 */
+}
+
+.titlecircle {
+  width: 4rem; /* 16 */
+  height: 4rem; /* 16 */
+  background-color: #d1d5db; /* gray-300 */
+  border-radius: 50%; /* 원형 */
+}
 /* 이름 텍스트 */
 .name {
   font-size: 1.2rem;
@@ -110,7 +120,7 @@
 
 /* 개별 콘텐츠 아이템 */
 .contentitem {
-  flex:  0 0 auto;
+  flex: 0 0 auto;
 }
 
 .contentitemimg {
@@ -152,6 +162,18 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .titleimg {
+    width: 4rem; /* 16 */
+    height: 4rem; /* 16 */
+    border-radius: 50px;
+    border: 2px solid #f4f4f4;
+  }
+
+  .titlecircle {
+    width: 3.5rem; /* 14 */
+    height: 3.5rem; /* 14 */
+  }
+
   .expense {
     font-size: 1.2rem;
     line-height: 1.75rem;
@@ -182,5 +204,17 @@
 
   .contentitemimg {
     height: 320px;
+  }
+
+  .titleimg {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50px;
+    border: 2px solid #f4f4f4;
+  }
+
+  .titlecircle {
+    width: 4rem; /* 16 */
+    height: 4rem; /* 16 */
   }
 }

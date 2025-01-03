@@ -12,6 +12,11 @@
   @apply w-full h-full bg-gray-200 rounded-full; /* 프로필 사진 자리 */
 }
 
+.titleimg img {
+  width: 70px;
+  height: 70px;
+}
+
 /* 폼 */
 .form {
   @apply w-full flex flex-col gap-6; /* 입력 필드 간격 */
@@ -59,6 +64,8 @@
   .avatar {
     height: 165px;
     width: 165px /* 아바타 크기 축소 */;
+    background-color: white;
+    border: 2px solid #f4f4f4;
   }
 
   .input {

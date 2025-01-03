@@ -4,6 +4,7 @@ import Category from './Category.tsx';
 import Recom from './Recom.tsx';
 import alarm from "../../../assets/images/Alarm.svg"
 import glass from "../../../assets/images/glass.svg"
+import userProfile from "../../../assets/images/k.svg"
 import styles from './Homemain.module.css';
 import { useNavigate} from 'react-router-dom';
 
@@ -20,7 +21,11 @@ const HomeProfile = () => {
     <div className={styles.titlebox}>
         <div className={styles.left} onClick={profileClick}>
             <div className={styles.titleimg}>
-                <div className={styles.titlecircle}></div>
+                <img 
+                    src={userProfile} 
+                    alt="프로필" 
+                    className={styles.profileImage}
+                />
             </div>
         <div className={styles.name}>문학소년</div>
         </div>

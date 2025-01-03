@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Setting.module.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import userProfile from "../../assets/images/k.svg"
 
 interface Emailinfo {
   nickname: string;
@@ -157,7 +158,13 @@ console.log(`userid:${userId}`);
   return (
     <div className={styles.profileForm}>
       <div className={styles.avatar}>
-        <div className={styles.circle}></div> {/* 프로필 사진 자리 */}
+        <div className={styles.titleimg}>
+            <img 
+                src={userProfile} 
+                alt="프로필" 
+                className={styles.profileImage}
+            />
+        </div>
       </div>
       <form className={styles.form}>
         {fields.map((field) => (
