@@ -1,4 +1,3 @@
-import Topbar from "../../components/common/Topbar/Topbar.tsx";
 import Bottombar from "../../components/common/Bottombar/Bottombar.tsx";
 import React, { useState } from "react";
 import styles from "./SearchWindow.module.css"
@@ -48,7 +47,6 @@ const Recentsearch = ()=>{
 }
 const SearchWindow = () =>{
     return(<>
-<Topbar/>
 <div style={{ paddingTop: "calc(50px)" }}></div>
 
 <SearchCategory/>

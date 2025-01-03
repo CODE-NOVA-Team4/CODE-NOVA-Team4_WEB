@@ -44,7 +44,7 @@ const Recom = () => {
         { name: "의류", src:  {fake}, description: "일상복, 운동복 등 의류",price:"20" },
       ];
   return <div className={styles.recom}>
-            <div className={styles.recomtitle}>추천목록</div>
+            <div className={styles.recomtitle}>요즘 뜨는 상품</div>
             <div className={styles.recomcontent}>
                 {recommendtype.map((item,index)=>(
                     <div key={index} className={styles.recomitembox}>
