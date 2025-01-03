@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Welcome.module.css';
-import logo from '../../assets/images/KUITSO-greenlogo.svg';
+import logoblack from '../../assets/images/logo-korean.svg';
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -31,10 +31,10 @@ const Welcome = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.logo}>
-          <img src={logo} alt="KUITSO" />
-        </div>
-        <div className={styles.description}>
-            안전한 건국대학교 캠퍼스 중고거래의 시작
+          <img src={logoblack} alt="KUITSO" />
+          <span className={styles.description}>
+            건국대 학생을 위한 쉽고 안전한 중고거래
+          </span>
         </div>
         <div className={styles.buttons}>
           <button onClick={() => navigate('/login')} className={styles.loginButton}>로그인</button>
