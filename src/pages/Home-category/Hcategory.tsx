@@ -6,6 +6,7 @@ import SearchCategory from "../../components/common/SearchCategory/SearchCategor
 import Categoryitems from "./Categoryitems.tsx";
 import DeliveryType from "./Deliverytype.tsx"
 import Back from "./Back.tsx";
+
 const Categoryitem = ({ prob }) => {
   return (
     <div className={styles.Category}>

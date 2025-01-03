@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Setting.module.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface Emailinfo {
   nickname: string;
@@ -10,7 +11,9 @@ interface Emailinfo {
 }
 
 const Settinginfo = () => {
+    const navigate = useNavigate();
   const [Einfo, setEinfo] = useState<Emailinfo>({
+
     nickname: '',
     department: '',
     email: '',
@@ -40,7 +43,7 @@ const Settinginfo = () => {
           ?.split('=')[1];
           console.log(sessionId);
         
-        const response = await api.post(
+        const response = await axios.post(
           '/auth/logout',
           null,
           {
@@ -57,7 +60,7 @@ const Settinginfo = () => {
   
           console.log('로그아웃 응답:', response.data);
   
-          if (response.data.status === 200 && response.data.success) {
+          if (response.data.status === 200) {
               // 로컬 스토리지와 상태 초기화
               localStorage.clear();
               navigate('/welcome');
@@ -82,7 +85,7 @@ const handleWithdrawal = async () => {
 
           console.log('회원탈퇴 요청 시작');  // 디버깅용 로그 추가
 
-          const response = await api.patch('/auth/signout', {}, {  // 빈 객체라도 데이터로 전송
+          const response = await axios.patch('/auth/signout', {}, {  // 빈 객체라도 데이터로 전송
               headers: {
                   'Authorization': `Bearer ${localStorage.getItem('token')}`,
                   'Content-Type': 'application/json'
@@ -94,7 +97,7 @@ const handleWithdrawal = async () => {
           
           console.log('회원탈퇴 응답:', response.data);
 
-          if (response.data.status === 200 && response.data.success) {
+          if (response.data.status === 200) {
               localStorage.clear();
               navigate('/welcome');
           }
