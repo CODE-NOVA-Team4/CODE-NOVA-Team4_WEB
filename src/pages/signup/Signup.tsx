@@ -5,7 +5,7 @@ import styles from './Signup.module.css';
 import backgreenArrow from '../../assets/images/arrow-green.svg';
 
 interface SignupForm {
-  name: string;
+  nickname: string;
   department: string;
   email: string;
   verificationCode: string;
@@ -13,18 +13,14 @@ interface SignupForm {
   passwordConfirm: string;
 }
 
-const fetchDepartments = async () => {
-  try {
-    const response = await api.get('/api/departments');
-    setDepartments(response.data);
-  } catch (error) {
-    console.error('학과 목록 가져오기 실패:', error);
-  }
-};
+interface ErrorState extends Partial<SignupForm> {
+  submit?: string;
+}
 
 const Signup = () => {
   const navigate = useNavigate();
   const [departments, setDepartments] = useState<string[]>([
+    '스마트ICT융합공학과',
     '컴퓨터공학부',
     '소프트웨어학과',
     '전자공학부',
@@ -34,11 +30,11 @@ const Signup = () => {
     '국어국문학과',
     '영어영문학과',
     '건축학과',
-    '화학공학과' // 임시데이터
+    '화학공학과'
   ]);
   const [showDepartments, setShowDepartments] = useState(false);
   const [formData, setFormData] = useState<SignupForm>({
-    name: '',
+    nickname: '',
     department: '',
     email: '',
     verificationCode: '',
@@ -47,7 +43,7 @@ const Signup = () => {
   });
   const [emailSent, setEmailSent] = useState(false);
   const [emailVerified, setEmailVerified] = useState(false);
-  const [errors, setErrors] = useState<Partial<SignupForm>>({});
+  const [errors, setErrors] = useState<ErrorState>({});
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -97,9 +93,9 @@ const Signup = () => {
   };
 
   const validateForm = () => {
-    const newErrors: Partial<SignupForm> = {};
+    const newErrors: ErrorState = {};
     
-    if (!formData.name) newErrors.name = '이름을 입력해주세요';
+    if (!formData.nickname) newErrors.nickname = '닉네임을 입력해주세요';
     if (!formData.department) newErrors.department = '학과를 입력해주세요';
     if (!formData.email.endsWith('@konkuk.ac.kr')) {
       newErrors.email = '건국대학교 이메일만 사용 가능합니다';
@@ -116,37 +112,75 @@ const Signup = () => {
   // 이메일 인증코드 발송
   const handleEmailVerification = async () => {
     try {
-      // 백엔드 API 엔드포인트와 통신
-      await api.post('/api/auth/email-verification', {
-        email: formData.email
+      const response = await api.post('/auth/code', {
+        email: formData.email,
       });
-      setEmailSent(true);
-    } catch (error) {
-      console.error('이메일 전송 실패:', error);
+      if (response.data.result === true) {
+        setEmailSent(true);
+      }
+    } catch (error: any) {
+      console.error('이메일 인증 요청 실패:', error.response?.data || error.message);
+      setErrors((prev) => ({
+        ...prev,
+        email: error.response?.data?.message || '이메일 전송에 실패했습니다.',
+      }));
+    }
+  };
+  
+
+  // 인증코드 확인
+  const verifyCode = async () => {
+    try {
+      const response = await api.post('/auth/verification', {
+        email: formData.email,
+        code: formData.verificationCode  // 문자열이 아닌 숫자로 보내기 위해 변환
+      });
+      
+      // response의 result 객체 확인
+      if (response.data.result?.success) {
+        setEmailVerified(true);
+        // 인증된 이메일 정보 저장 (필요한 경우)
+        const certifiedEmail = response.data.result.certified_email;
+        const certifiedDate = response.data.result.certified_date;
+        
+        // 성공 메시지 표시 (옵션)
+        setErrors(prev => ({
+          ...prev,
+          verificationCode: ''  // 에러 메시지 제거
+        }));
+      } else {
+        // 인증 실패
+        setEmailVerified(false);
+        setErrors(prev => ({
+          ...prev,
+          verificationCode: response.data.message || '이메일 인증에 실패했습니다.'
+        }));
+      }
+    } catch (error: any) {
+      setEmailVerified(false);
+      // 에러 응답 처리
+      const errorMessage = error.response?.data?.message || '인증번호 확인에 실패했습니다';
+      setErrors(prev => ({
+        ...prev,
+        verificationCode: errorMessage
+      }));
     }
   };
 
-// 인증코드 확인
-const verifyCode = async () => {
-    try {
-      // 백엔드 API 엔드포인트와 통신
-      const response = await api.post('/api/auth/verify-code', {
-        email: formData.email,
-        code: formData.verificationCode
-      });
-      
-      // 인증 성공 시
-      if (response.data.success) {
-        setEmailVerified(true);
-      }
-    } catch (error) {
-      console.error('인증번호 확인 실패:', error);
+  const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    // 숫자만 허용
+    if (value === '' || /^\d+$/.test(value)) {
+      setFormData(prev => ({
+        ...prev,
+        verificationCode: value
+      }));
     }
   };
 
   const isFormValid = () => {
     return (
-      formData.name &&
+      formData.nickname &&
       formData.department &&
       formData.email.endsWith('@konkuk.ac.kr') &&
       emailVerified &&
@@ -158,17 +192,41 @@ const verifyCode = async () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-
+  
     try {
-      await api.post('/api/auth/signup', {
-        name: formData.name,
+      console.log('회원가입 요청 데이터:', {
+        nickname: formData.nickname,
         department: formData.department,
         email: formData.email,
         password: formData.password,
       });
-      navigate('/login');
-    } catch (error) {
-      console.error('회원가입 실패:', error);
+  
+      const response = await api.post('/auth/signup', {
+        nickname: formData.nickname,
+        department: formData.department,
+        email: formData.email,
+        password: formData.password,
+      });
+  
+      // 응답 데이터 확인
+      console.log('회원가입 응답:', response.data);
+  
+      // status가 200이고 success가 true인 경우에만 로그인 페이지로 이동
+      if (response.data.status === 200 && response.data.success === true) {
+        navigate('/login');
+      } else {
+        // success가 false인 경우 에러 메시지 표시
+        setErrors(prev => ({
+          ...prev,
+          submit: response.data.message || '회원가입에 실패했습니다.'
+        }));
+      }
+    } catch (error: any) {
+      console.error('회원가입 에러:', error.response?.data || error);
+      setErrors(prev => ({
+        ...prev,
+        submit: error.response?.data?.message || '회원가입에 실패했습니다.'
+      }));
     }
   };
 
@@ -179,7 +237,7 @@ const verifyCode = async () => {
           onClick={() => navigate(-1)} 
           className={styles.backButton}
         >
-        <img src={backgreenArrow} alt="back" />
+          <img src={backgreenArrow} alt="back" />
         </button>
         <span className={styles.headerspan}>회원가입</span>
       </div>
@@ -189,13 +247,13 @@ const verifyCode = async () => {
             <label className={styles.label}>닉네임</label>
             <input
               type="text"
-              name="name"
-              placeholder="이름을 입력해주세요."
-              value={formData.name}
+              name="nickname"
+              placeholder="닉네임을 입력해주세요."
+              value={formData.nickname}
               onChange={handleChange}
               className={styles.input}
             />
-            {errors.name && <span className={styles.error}>{errors.name}</span>}
+            {errors.nickname && <span className={styles.error}>{errors.nickname}</span>}
           </div>
 
           <div className={styles.formGroup}>
@@ -261,8 +319,9 @@ const verifyCode = async () => {
                 name="verificationCode"
                 placeholder="인증코드를 입력해주세요."
                 value={formData.verificationCode}
-                onChange={handleChange}
+                onChange={handleVerificationCodeChange}  // 새로운 핸들러 사용
                 className={styles.input}
+                maxLength={5}  // 인증코드 길이 제한
               />
               <button
                 type="button"
@@ -271,6 +330,8 @@ const verifyCode = async () => {
               >
                 확인
               </button>
+              {errors.verificationCode && 
+                <span className={styles.error}>{errors.verificationCode}</span>}
             </div>
           )}
 
@@ -296,10 +357,11 @@ const verifyCode = async () => {
               onChange={handleChange}
               className={styles.input}
             />
-            {errors.passwordConfirm && (
-              <span className={styles.error}>{errors.passwordConfirm}</span>
-            )}
+            {errors.passwordConfirm && 
+              <span className={styles.error}>{errors.passwordConfirm}</span>}
           </div>
+
+          {errors.submit && <span className={styles.error}>{errors.submit}</span>}
 
           <button
             type="submit"

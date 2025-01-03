@@ -1,4 +1,5 @@
 {
+  "proxy": "http://54.180.7.41:8000",
   "name": "ku-it-so",
   "version": "0.1.0",
   "private": true,

@@ -125,6 +125,13 @@
   font-size: 0.9rem;
 }
 
+.error {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: center;
+}
+
 @keyframes twinkle {
   0%,
   100% {

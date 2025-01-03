@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
 import styles from './SearchCategory.module.css';
 import { useLocation, useNavigate } from "react-router-dom";
-import backsp from "../../../assets/images/Back.svg"
+import backsp from "../../../assets/images/arrow-green.svg"
+import searchIcon from "../../../assets/images/search.svg"
 
 const SearchCategory = ()=>{
     const location = useLocation(); // 현재 경로 가져오기
@@ -39,7 +40,9 @@ const SearchCategory = ()=>{
                 onChange={(e) => setSearchText(e.target.value)}
                 readOnly={location.pathname !== "/search"}
             />
-            <div className={styles.searchButton}  onClick={handleSearch}></div>
+            <div className={styles.searchButton} onClick={handleSearch}>
+                    <img src={searchIcon} alt="검색" />
+                </div>
             </div>
        </div>
       );

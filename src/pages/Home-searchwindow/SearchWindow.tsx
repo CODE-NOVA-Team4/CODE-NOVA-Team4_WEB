@@ -47,7 +47,6 @@ const Recentsearch = ()=>{
 }
 const SearchWindow = () =>{
     return(<>
-<div style={{ paddingTop: "calc(50px)" }}></div>
 
 <SearchCategory/>
 <Recentsearch/>

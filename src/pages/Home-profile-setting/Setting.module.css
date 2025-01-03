@@ -126,14 +126,23 @@
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+  margin-top: 1rem;
 }
 
 /* 로그아웃 / 회원탈퇴 버튼 */
 .logout,
 .out {
-  @apply text-sm cursor-pointer; /* 텍스트 스타일 */
+  @apply text-sm cursor-pointer transition-colors duration-300;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.logout:hover {
+  @apply text-white bg-blue-500;
+}
+
+.out:hover {
+  @apply text-white bg-red-500;
 }
 
 /* 반응형 설정 */

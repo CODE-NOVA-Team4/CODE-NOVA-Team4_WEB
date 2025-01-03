@@ -136,6 +136,7 @@
   .back {
     @apply w-6 h-6 cursor-pointer; /* 기본 크기와 클릭 가능 스타일 */
     transition: transform 0.2s ease; /* 클릭 시 애니메이션 */
+    
   }
 
   .back:hover {
