@@ -3,6 +3,8 @@ import styles from './Bottombar.module.css';
 import home from '../../../assets/images/Bottombar-homebutton.svg';
 import indicator from '../../../assets/images/Bottombar-indicator.svg';
 import {useLocation, useNavigate } from "react-router-dom";
+import shop from '../../../assets/images/shopping.svg';
+import chat from '../../../assets/images/chat.svg';
 
 const Bottombar = () => {
     const navigate = useNavigate();
@@ -40,7 +42,7 @@ const Bottombar = () => {
           }`}
           onClick={() => handleMenuClick(1)}
         >
-          <img src={home} alt="Bag" />
+          <img src={shop} alt="Bag" />
         </div>
 
         {/* 메뉴 3 */}
@@ -50,7 +52,7 @@ const Bottombar = () => {
           }`}
           onClick={() => handleMenuClick(2)}
         >
-          <img src={home} alt="Chat" />
+          <img src={chat} alt="Chat" />
         </div>
       </div>}
         </div>
